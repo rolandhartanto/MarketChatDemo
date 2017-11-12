@@ -33,10 +33,10 @@ class GroceryHandler(Handler):
       pass
     elif data == 'details_a':
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text="'Arabian egg\n\nPrice: Rp. 25,000.00\nStore location: Yogya Karapitan (Bandung)\nCondition: Good"))
+        event.reply_token, TextSendMessage(text='Arabian egg\n\nPrice: Rp. 25,000.00\nStore location: Yogya Karapitan (Bandung)\nCondition: Good'))
     elif data == 'details_b':
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text="'Australian egg\n\nPrice: Rp. 25,000.00\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good"))
+        event.reply_token, TextSendMessage(text='Australian egg\n\nPrice: Rp. 25,000.00\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good'))
     elif data == 'compare':
       self.switch_handler(CompareHandler(event.reply_token, bot_api))
 
@@ -75,7 +75,7 @@ class SearchStoreHandler(Handler):
 
     if data == 'yogyak':
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text="'You choose Yogya kepatihan"))
+        event.reply_token, TextSendMessage(text='You choose Yogya kepatihan'))
     elif data == 'yogyar':
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text="'You choose Yogya Riau"))
+        event.reply_token, TextSendMessage(text='You choose Yogya Riau'))
