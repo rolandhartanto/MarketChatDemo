@@ -78,7 +78,6 @@ handle = DefaultHandler()
 @handle.handle_set_handler
 def set_handler(handler):
   global handle
-
   print("SET CURRENT HANDLE: " + str(handle))
   handle = handler
 
@@ -91,16 +90,20 @@ def handle_text_message(event):
     bot_api.reply_message(
       event.reply_token,
       TextMessage(text="Switch to main menu."))
+
+    global handle
     handle.switch_handler(DefaultHandler())
 
   handle.handle_text(event, bot_api)
 
 @webhook.add(MessageEvent, message=LocationMessage)
 def handle_location_message(event):
+  global handle
   handle.handle_location(event, bot_api)
 
 @webhook.add(PostbackEvent)
 def handle_postback(event):
+  global handle
   handle.handle_postback(event, bot_api)
 
 
