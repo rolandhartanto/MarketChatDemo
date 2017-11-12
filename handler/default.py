@@ -27,4 +27,4 @@ class DefaultHandler(Handler):
     data = event.postback.data
 
     if data == 'search':
-      switch_handler(SearchHandler(event.reply_token, bot_api))
+      self.switch_handler(SearchHandler(event.reply_token, bot_api))
