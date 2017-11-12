@@ -165,13 +165,10 @@ def handle_text_message(event):
         #Actionnya masih gak ngerti gimana caranya actionnya text Category: Arabian aja
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url='https://www.theurbanlist.com/content/article/wysiwyg/three-williams-eggs.png',
-                                action=DatetimePickerTemplateAction(label='Arabian egg\nRp 25.000,00',
-                                                                    data='Arabian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good',
-                                                                    text='Arabian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good')),
+                                action=PostbackTemplateAction(label='Arabian egg\nRp 25.000,00',data='arabian-egg')),
             ImageCarouselColumn(image_url='https://www.fritzmag.com.au/wp-content/uploads/2016/12/Get-Your-Googie-On-With-South-Australian-Eggs-2.jpg',
                                 action=DatetimePickerTemplateAction(label='Australian egg\nRp 25.000,00',
-                                                                    data='Australian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good',
-                                                                    text='Australian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good'))
+                                                                    data='australian-egg'))
         ])
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
@@ -460,10 +457,13 @@ def handle_leave():
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    if event.postback.data == 'ping':
+    if event.postback.data == 'arabian-egg':
         line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text='pong'))
-    elif event.postback.data == 'datetime_postback':
+            event.reply_token, TextSendMessage(text='Arabian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good'))
+    elif event.postback.data == 'australian-egg':
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text='Australian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good'))
+	elif event.postback.data == 'datetime_postback':
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.postback.params['datetime']))
     elif event.postback.data == 'date_postback':
