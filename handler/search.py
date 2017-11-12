@@ -6,19 +6,17 @@ from linebot.models import *
 
 class GroceryHandler(Handler):
   def __init__(self, reply_token, bot_api):
-    carousel_template = CarouselTemplate(columns=[
-      CarouselColumn(text='hoge1', title='fuga1', actions=[
-        PostbackTemplateAction(label='ping', data='ping'),
-        PostbackTemplateAction(label='ping', data='ping')
-      ]),
-      CarouselColumn(text='hoge1', title='fuga1', actions=[
-        PostbackTemplateAction(label='ping', data='ping'),
-        PostbackTemplateAction(label='ping', data='ping')
-      ])
+    image_carousel_template = ImageCarouselTemplate(columns=[
+      ImageCarouselColumn(
+        image_url='https://www.theurbanlist.com/content/article/wysiwyg/three-williams-eggs.png',
+        action=PostbackTemplateAction(label='Arabian egg\nRp 25.000,00', data='arabian-egg')),
+      ImageCarouselColumn(
+        image_url='https://www.fritzmag.com.au/wp-content/uploads/2016/12/Get-Your-Googie-On-With-South-Australian-Eggs-2.jpg',
+        action=DatetimePickerTemplateAction(label='Australian egg\nRp 25.000,00', data='australian-egg'))
     ])
     template_message = TemplateSendMessage(
-      alt_text='Carousel alt text', template=carousel_template)
-    bot_api.reply_message(reply_token, template_message)
+      alt_text='ImageCarousel alt text', template=image_carousel_template)
+    bot_api.reply_message(event.reply_token, template_message)
 
 class SearchHandler(Handler):
 
