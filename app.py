@@ -80,7 +80,7 @@ session = {
 }
 
 @handle.handle_set_handler
-def set_handler(handler):
+def set_handler(event, handler):
   session['handler'] = handler
   print("SET CURRENT HANDLE: " + str(handle))
 
@@ -94,7 +94,7 @@ def handle_text_message(event):
       event.reply_token,
       TextMessage(text="Switch to main menu."))
 
-    session['handler'].switch_handler(DefaultHandler())
+    session['handler'].switch_handler(event, DefaultHandler())
 
   session['handler'].handle_text(event, bot_api)
 

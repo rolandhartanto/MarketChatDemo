@@ -33,7 +33,7 @@ class RecommendByPromoHandler(Handler):
     bot_api.reply_message(
       event.reply_token, TextSendMessage(text="'Indonesian egg\n\nOriginal Price: Rp. 20,000.00\n\nPrice after promo : Rp 15.000,-(Off 25%)\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good"))
   elif data == 'compare':
-    self.switch_handler(CompareHandler(event.reply_token, bot_api))
+    self.switch_handler(event, CompareHandler(event.reply_token, bot_api))
 
 class RecommendByHistoryHandler(Handler):
 
@@ -63,7 +63,7 @@ class RecommendByHistoryHandler(Handler):
     bot_api.reply_message(
       event.reply_token, TextSendMessage(text="'Arabian egg\n\nPrice: Rp. 25,000.00\n\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good"))
   elif data == 'compare':
-    self.switch_handler(CompareHandler(event.reply_token, bot_api))
+    self.switch_handler(event, CompareHandler(event.reply_token, bot_api))
 
 class PopularProductHandler(Handler):
 
@@ -93,4 +93,4 @@ class PopularProductHandler(Handler):
     bot_api.reply_message(
       event.reply_token, TextSendMessage(text="'Japanese egg\n\nPrice: Rp. 22,500.00\nOrdered 4,759 times today\nStore location: Yogya Sunda (Bandung)\nCondition: Good"))
   elif data == 'compare':
-    self.switch_handler(CompareHandler(event.reply_token, bot_api))
+    self.switch_handler(event, CompareHandler(event.reply_token, bot_api))

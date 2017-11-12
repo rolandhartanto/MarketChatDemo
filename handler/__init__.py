@@ -3,9 +3,9 @@
 class Handler:
   set_handler_callback = None
 
-  def switch_handler(self, handler):
+  def switch_handler(self, event, handler):
     handler.set_handler_callback = self.set_handler_callback
-    self.set_handler_callback(handler)
+    self.set_handler_callback(event, handler)
 
   def handle_text(self, event, bot_api):
     pass

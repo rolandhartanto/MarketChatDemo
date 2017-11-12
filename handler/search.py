@@ -40,7 +40,7 @@ class GroceryHandler(Handler):
       bot_api.reply_message(
         event.reply_token, TextSendMessage(text='Australian egg\n\nPrice: Rp. 25,000.00\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good'))
     elif data == 'compare':
-      self.switch_handler(CompareHandler(event.reply_token, bot_api))
+      self.switch_handler(event, CompareHandler(event.reply_token, bot_api))
 
 class SearchHandler(Handler):
   def __init__(self, reply_token, bot_api):
@@ -57,7 +57,7 @@ class SearchHandler(Handler):
     data = event.postback.data
 
     if data == 'grocery':
-      self.switch_handler(GroceryHandler(event.reply_token, bot_api))
+      self.switch_handler(event, GroceryHandler(event.reply_token, bot_api))
     elif data == 'fashion':
       pass
 
