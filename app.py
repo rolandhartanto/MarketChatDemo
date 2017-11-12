@@ -77,12 +77,13 @@ handle = DefaultHandler()
 
 @handle.handle_set_handler
 def set_handler(handler):
-  print("SET CURRENT HANDLE!")
+  print("SET CURRENT HANDLE: " + handle)
   handle = handler
 
 @webhook.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
   text = event.message.text.lower()
+  print("SERVER: " + handle)
 
   if text == 'cancel':
     bot_api.reply_message(
