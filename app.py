@@ -77,6 +77,8 @@ handle = DefaultHandler()
 
 @handle.handle_set_handler
 def set_handler(handler):
+  global handle
+
   print("SET CURRENT HANDLE: " + str(handle))
   handle = handler
 
