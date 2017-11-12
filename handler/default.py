@@ -23,9 +23,9 @@ class DefaultHandler(Handler):
             text='ping'),
           MessageTemplateAction(label='Translate Rice', text='米')
         ])
-        template_message = TemplateSendMessage(
-          alt_text='Buttons alt text', template=buttons_template)
-        bot_api.reply_message(event.reply_token, template_message)
+      template_message = TemplateSendMessage(
+        alt_text='Buttons alt text', template=buttons_template)
+      bot_api.reply_message(event.reply_token, template_message)
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
