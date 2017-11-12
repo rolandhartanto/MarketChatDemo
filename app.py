@@ -161,6 +161,44 @@ def handle_text_message(event):
         line_bot_api.reply_message(event.reply_token, template_message)
     elif text == 'imagemap':
         pass
+	elif text == 'Find egg':
+	
+	elif text == 'cancel':
+	
+	elif text == 'Findstore lapakXYZ':
+
+	elif text == 'list transactions':
+	
+	elif text == 'view transaction XXX':
+	
+	elif text == 'Compare':
+	
+	elif text == 'Display all':
+	
+	elif text == 'Change':
+	
+	elif text == '1':
+	
+	elif text == '2':
+	
+	elif text == 'recommend':
+	
+	elif text == 'promo':
+	
+	elif text == 'Recommend by history':
+	
+	elif text == 'Any popular products right now?':
+	
+	elif text == 'Trending products':
+	
+	elif text == 'Buy Arabian egg':
+	
+	elif text == 'pay by transfer':
+	
+	elif text == 'pay by COD':
+	
+	elif text == 'choose 1':
+	
     else:
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text))
