@@ -2,6 +2,8 @@
 
 from . import Handler
 
+from linebot.models import *
+
 class DefaultHandler(Handler):
 
   def handle_set_handler(self, cb):
