@@ -28,7 +28,7 @@ class SearchHandler(Handler):
       ])
     template_message = TemplateSendMessage(
       alt_text='Buttons alt text', template=buttons_template)
-    bot_api.reply_message(event.reply_token, template_message)
+    bot_api.reply_message(reply_token, template_message)
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
