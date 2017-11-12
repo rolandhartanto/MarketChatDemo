@@ -4,13 +4,7 @@ from . import Handler
 
 from linebot.models import *
 
-class Transact1Handler(Handler):
-  def __init__(self, reply_token, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text="Switch to main menu."))
-
-class SearchHandler(Handler):
+class StatusHandler(Handler):
 
   def __init__(self, reply_token, bot_api):
     buttons_template = ButtonsTemplate(
@@ -27,10 +21,10 @@ class SearchHandler(Handler):
 
     if data == 't1':
       bot_api.reply_message(
-        reply_token,
+        event.reply_token,
         TextMessage(text="Transaction ID 1.\nArabian Egg.\n\nStatus: Delivering"))
     elif data == 't2':
       bot_api.reply_message(
-        reply_token,
+        event.reply_token,
         TextMessage(text="Transaction ID 2.\nAustralian Egg.\n\nStatus: Packing"))
 
