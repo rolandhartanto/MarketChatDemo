@@ -165,13 +165,13 @@ def handle_text_message(event):
         #Actionnya masih gak ngerti gimana caranya actionnya text Category: Arabian aja
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url='https://www.theurbanlist.com/content/article/wysiwyg/three-williams-eggs.png',
-                                action=DatetimePickerTemplateAction(label='date',
-                                                                    data='date_postback',
-                                                                    mode='date')),
+                                action=DatetimePickerTemplateAction(label='Arabian egg\nRp 25.000,00',
+                                                                    data='Arabian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good',
+                                                                    text='Arabian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good')),
             ImageCarouselColumn(image_url='https://www.fritzmag.com.au/wp-content/uploads/2016/12/Get-Your-Googie-On-With-South-Australian-Eggs-2.jpg',
-                                action=DatetimePickerTemplateAction(label='date',
-                                                                    data='date_postback',
-                                                                    mode='date'))
+                                action=DatetimePickerTemplateAction(label='Australian egg\nRp 25.000,00',
+                                                                    data='Australian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good',
+                                                                    data='Australian egg\n\nPrice: Rp 25.000,00\nStore location: Yogya kepatihan(Bandung)\nCondition: Good'))
         ])
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
