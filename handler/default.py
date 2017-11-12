@@ -31,6 +31,6 @@ class DefaultHandler(Handler):
     if data == 'search':
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
     elif data == 'searchstore':
-      self.switch_handler(SearcStoreHandler(event.reply_token, bot_api))  
+      self.switch_handler(SearchStoreHandler(event.reply_token, bot_api))  
     elif data == 'status':
       self.switch_handler(StatusHandler(event.reply_token, bot_api))
