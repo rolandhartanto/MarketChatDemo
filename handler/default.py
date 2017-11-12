@@ -2,6 +2,7 @@
 
 from handler import Handler
 from handler.search import SearchHandler
+from handler.status import StatusHandler
 
 from linebot.models import *
 
@@ -28,3 +29,5 @@ class DefaultHandler(Handler):
 
     if data == 'search':
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
+    elif data == 'status':
+      self.switch_handler(StatusHandler(event.reply_token, bot_api))
