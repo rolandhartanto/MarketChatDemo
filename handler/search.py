@@ -11,11 +11,13 @@ class GroceryHandler(Handler):
 
       CarouselColumn(text='Rp 25.000,-', title='Arabian Egg', actions=[
         PostbackTemplateAction(label='Buy', data='buy_a'),
-        PostbackTemplateAction(label='Details', data='details_a')
+        PostbackTemplateAction(label='Details', data='details_a'),
+        PostbackTemplateAction(label='Details', data='compare')
       ]),
       CarouselColumn(text='Rp 25.000,-', title='Australian Egg', actions=[
         PostbackTemplateAction(label='Buy', data='buy_b'),
-        PostbackTemplateAction(label='Details', data='details_b')
+        PostbackTemplateAction(label='Details', data='details_b'),
+        PostbackTemplateAction(label='Details', data='compare')
       ])
     ])
     template_message = TemplateSendMessage(
@@ -58,7 +60,7 @@ class SearchHandler(Handler):
       self.switch_handler(GroceryHandler(event.reply_token, bot_api))
     elif data == 'fashion':
       pass
-	  
+
 class SearchStoreHandler(Handler):
   def __init__(self, reply_token, bot_api):
     buttons_template = ButtonsTemplate(

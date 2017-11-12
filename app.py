@@ -73,35 +73,42 @@ def callback():
   return 'OK'
 
 
+
 handle = DefaultHandler()
+session = {
+  'handler': handle
+}
 
 @handle.handle_set_handler
 def set_handler(handler):
-  global handle
-  handle = handler
+  session['handler'] = handler
   print("SET CURRENT HANDLE: " + str(handle))
 
 @webhook.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
   text = event.message.text.lower()
-  print("SERVER: " + str(handle))
+  print("HANDLE TEXT: " + str(session['handler']))
 
   if text == 'cancel':
     bot_api.reply_message(
       event.reply_token,
       TextMessage(text="Switch to main menu."))
-      
-    handle.switch_handler(DefaultHandler())
 
-  handle.handle_text(event, bot_api)
+    session['handler'].switch_handler(DefaultHandler())
+
+  session['handler'].handle_text(event, bot_api)
 
 @webhook.add(MessageEvent, message=LocationMessage)
 def handle_location_message(event):
-  handle.handle_location(event, bot_api)
+  print("HANDLE LOCATION: " + str(session['handler']))
+
+  session['handler'].handle_location(event, bot_api)
 
 @webhook.add(PostbackEvent)
 def handle_postback(event):
-  handle.handle_postback(event, bot_api)
+  print("HANDLE POSTBACK: " + str(session['handler']))
+
+  session['handler'].handle_postback(event, bot_api)
 
 
 # Run application.
