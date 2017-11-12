@@ -58,3 +58,24 @@ class SearchHandler(Handler):
       self.switch_handler(GroceryHandler(event.reply_token, bot_api))
     elif data == 'fashion':
       pass
+	  
+class SearchStoreHandler(Handler):
+  def __init__(self, reply_token, bot_api):
+    buttons_template = ButtonsTemplate(
+      title='Available store', text='Choose store:', actions=[
+        PostbackTemplateAction(label='Yogya kepatihan', data='yogyak'),
+        PostbackTemplateAction(label='Yogya riau', data='yogyar')
+      ])
+    template_message = TemplateSendMessage(
+      alt_text='Buttons alt text', template=buttons_template)
+    bot_api.reply_message(reply_token, template_message)
+
+  def handle_postback(self, event, bot_api):
+    data = event.postback.data
+
+    if data == 'yogyak':
+      bot_api.reply_message(
+        event.reply_token, TextSendMessage(text="'You choose Yogya kepatihan"))
+    elif data == 'yogyar':
+      bot_api.reply_message(
+        event.reply_token, TextSendMessage(text="'You choose Yogya Riau"))
