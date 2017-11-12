@@ -15,7 +15,7 @@ class DefaultHandler(Handler):
 
     if text == 'hi':
       buttons_template = ButtonsTemplate(
-        title='What do you wanto to do?', text='Choose action:', actions=[
+        title='What do you want to do?', text='Choose action:', actions=[
           PostbackTemplateAction(label='Search Items', data='search'),
           PostbackTemplateAction(label='View Transactions', data='status')
         ])
