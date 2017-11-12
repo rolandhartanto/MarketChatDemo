@@ -77,15 +77,16 @@ handle = DefaultHandler()
 
 @handle.handle_set_handler
 def set_handler(handler):
+  print("SET CURRENT HANDLE!")
   handle = handler
 
 @webhook.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
-  text = event.message.text
+  text = event.message.text.lower()
 
   if text == 'cancel':
     bot_api.reply_message(
-      reply_token,
+      event.reply_token,
       TextMessage(text="Switch to main menu."))
     handle.switch_handler(DefaultHandler())
 
