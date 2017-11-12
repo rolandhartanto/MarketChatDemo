@@ -16,7 +16,7 @@ class GroceryHandler(Handler):
     ])
     template_message = TemplateSendMessage(
       alt_text='ImageCarousel alt text', template=image_carousel_template)
-    bot_api.reply_message(reply_token, template_message)
+    bot_api.reply_message(event.reply_token, template_message)
 
 class SearchHandler(Handler):
 
