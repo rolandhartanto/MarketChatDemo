@@ -8,10 +8,10 @@ class GroceryHandler(Handler):
   def __init__(self, reply_token, bot_api):
     image_carousel_template = ImageCarouselTemplate(columns=[
       ImageCarouselColumn(
-        image_url='https://www.theurbanlist.com/content/article/wysiwyg/three-williams-eggs.png',
+        image_url='https://via.placeholder.com/1024x1024',
         action=PostbackTemplateAction(label='Arabian egg\nRp 25.000,00', data='arabian-egg')),
       ImageCarouselColumn(
-        image_url='https://www.fritzmag.com.au/wp-content/uploads/2016/12/Get-Your-Googie-On-With-South-Australian-Eggs-2.jpg',
+        image_url='https://via.placeholder.com/1024x1024',
         action=PostbackTemplateAction(label='Australian egg\nRp 25.000,00', data='australian-egg'))
     ])
     template_message = TemplateSendMessage(
