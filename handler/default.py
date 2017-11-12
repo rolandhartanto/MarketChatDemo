@@ -18,7 +18,7 @@ class DefaultHandler(Handler):
           PostbackTemplateAction(label='Search Items', data='search'),
           PostbackTemplateAction(label='View transactions', data='transact')
         ])
-      message = TemplateSendMessage(template=buttons)
+      message = TemplateSendMessage(alt_text='Actions', template=buttons)
       bot_api.reply_message(event.reply_token, message)
 
   def handle_postback(self, event, bot_api):
