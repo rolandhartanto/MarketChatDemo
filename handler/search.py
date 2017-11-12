@@ -10,13 +10,11 @@ class GroceryHandler(Handler):
     carousel_template = CarouselTemplate(columns=[
       CarouselColumn(text='Rp 25.000,-', title='Arabian Egg', actions=[
         PostbackTemplateAction(label='Buy', data='buy_a'),
-        PostbackTemplateAction(label='Details', data='details_a'),
-        PostbackTemplateAction(label='Compare', data='compare')
+        PostbackTemplateAction(label='Details', data='details_a')
       ]),
       CarouselColumn(text='Rp 25.000,-', title='Australian Egg', actions=[
         PostbackTemplateAction(label='Buy', data='buy_b'),
-        PostbackTemplateAction(label='Details', data='details_b'),
-        PostbackTemplateAction(label='Compare', data='compare')
+        PostbackTemplateAction(label='Details', data='details_b')
       ])
     ])
     template_message = TemplateSendMessage(
