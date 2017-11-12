@@ -12,8 +12,6 @@ class CompareHandler(Handler):
         PostbackTemplateAction(label='Choose', data='compare_ok')
       ]),
       CarouselColumn(text='Rp 25.000,-', title='Australian Egg', actions=[
-        PostbackTemplateAction(label='Buy', data='buy_b'),
-        PostbackTemplateAction(label='Details', data='details_b'),
         PostbackTemplateAction(label='Choose', data='compare_ok')
       ])
     ])
