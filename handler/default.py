@@ -4,10 +4,10 @@ from . import Handler
 
 class DefaultHandler(Handler):
 
-  def handle_set_handler(cb):
+  def handle_set_handler(self, cb):
     self.set_handler_callback = cb
 
-  def handle_text(event, bot_api):
+  def handle_text(self, event, bot_api):
     text = event.message.text
 
     if text == 'hi':
@@ -19,5 +19,5 @@ class DefaultHandler(Handler):
       message = TemplateSendMessage(template=buttons)
       bot_api.reply_message(event.reply_token, message)
 
-  def handle_postback(event, bot_api):
+  def handle_postback(self, event, bot_api):
     data = event.postback.data
