@@ -1,6 +1,7 @@
 # default.py
 
-from . import Handler
+from handler import Handler
+from handler.search import SearchHandler
 
 from linebot.models import *
 
@@ -14,14 +15,9 @@ class DefaultHandler(Handler):
 
     if text == 'hi':
       buttons_template = ButtonsTemplate(
-        title='My buttons sample', text='Hello, my buttons', actions=[
-          URITemplateAction(
-            label='Go to line.me', uri='https://line.me'),
-          PostbackTemplateAction(label='ping', data='ping'),
-          PostbackTemplateAction(
-            label='ping with text', data='ping',
-            text='ping'),
-          MessageTemplateAction(label='Translate Rice', text='米')
+        title='What do you wanto to do?', text='Choose action:', actions=[
+          PostbackTemplateAction(label='Search Items', data='search'),
+          PostbackTemplateAction(label='View Transactions', data='status')
         ])
       template_message = TemplateSendMessage(
         alt_text='Buttons alt text', template=buttons_template)
@@ -29,3 +25,6 @@ class DefaultHandler(Handler):
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
+
+    if data == 'search':
+      switch_handler(SearchHandler(event.reply_token, bot_api))
