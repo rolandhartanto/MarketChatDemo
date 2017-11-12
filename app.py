@@ -78,8 +78,8 @@ handle = DefaultHandler()
 @handle.handle_set_handler
 def set_handler(handler):
   global handle
-  print("SET CURRENT HANDLE: " + str(handle))
   handle = handler
+  print("SET CURRENT HANDLE: " + str(handle))
 
 @webhook.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
