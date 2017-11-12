@@ -235,14 +235,29 @@ def handle_text_message(event):
                                                                     mode='date'))
         ])
         template_message = TemplateSendMessage(
-            alt_text='ImageCarousel alt text', template=image_carousel_template)
+            alt_text='Choose one of these products to compare with <current_product>', template=image_carousel_template)
         line_bot_api.reply_message(event.reply_token, template_message)
     elif text == 'Display all':
         line_bot_api.reply_message(
             event.reply_token,
-            TextMessage(text="Arabian egg vs Mysterious egg\n\n"))
+            TextMessage(text="Arabian egg vs Mysterious egg\n\nShell:\nSpike shell vs Smooth shell\n\nShape:\nRound shape vs Oval shape\n\nSize:10inch vs 18inch\n\nColor:\nRed vs Cream.\n\nMysterious egg's exclusive properties:\nDoes not break when thrown with a force.\nIs not known if it's an actual egg.\n\nAustralian egg's exclusive properties:\n-"))
     elif text == 'Change':
-		#carousel
+		carousel_template = CarouselTemplate(columns=[
+            CarouselColumn(text='Mysterious egg', title='1', actions=[
+                URITemplateAction(
+                    label='Go to line.me', uri='https://line.me'),
+                PostbackTemplateAction(label='ping', data='ping')
+            ]),
+            CarouselColumn(text='Arabian egg', title='2', actions=[
+                PostbackTemplateAction(
+                    label='ping with text', data='ping',
+                    text='ping'),
+                MessageTemplateAction(label='Translate Rice', text='米')
+            ]),
+        ])
+        template_message = TemplateSendMessage(
+            alt_text='Choose which one to replace.', template=carousel_template)
+        line_bot_api.reply_message(event.reply_token, template_message)
     elif text == '1':
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url='https://www.theurbanlist.com/content/article/wysiwyg/three-williams-eggs.png',
