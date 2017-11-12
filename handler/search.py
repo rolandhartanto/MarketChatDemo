@@ -16,7 +16,7 @@ class SearchHandler(Handler):
 
     if text == 'hi':
       bot_api.reply_message(
-        reply_token,
+        event.reply_token,
         TextMessage(text="Test LAGI"))
 
   def handle_postback(self, event, bot_api):
