@@ -77,7 +77,7 @@ def callback():
 
 session = {}
 
-def handle_session():
+def handle_session(event):
   user_id = event.source.user_id
 
   if user_id not in session:
