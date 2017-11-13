@@ -73,49 +73,59 @@ def callback():
   return 'OK'
 
 
+# Session handler.
 
-handle = DefaultHandler()
-session = {
-  'handler': handle
-}
+session = {}
 
-@handle.handle_set_handler
-def set_handler(event, handler):
-  session['handler'] = handler
-  print("SET CURRENT HANDLE: " + str(handle))
+def handle_session(event):
+  user_id = event.source.user_id
+
+  if user_id not in session:
+    handle = DefaultHandler()
+    session[user_id] = handle
+
+    @handle.handle_set_handler
+    def set_handler(event, handler):
+      session[user_id] = handler
+      print("SET HANDLE: " + str(handle) + ", uid: " + str(user_id))
+
+  return session[user_id]
+
+
+# Message handler.
 
 @webhook.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
+  state = handle_session(event)
   text = event.message.text.lower()
-  print("HANDLE TEXT: " + str(session['handler']))
 
   if text == 'cancel':
     bot_api.reply_message(
       event.reply_token,
       TextMessage(text="Switch to main menu."))
-    session['handler'].switch_handler(event, DefaultHandler())
+    state.switch_handler(event, DefaultHandler())
 
-  session['handler'].handle_text(event, bot_api)
+  state.handle_text(event, bot_api)
 
 @webhook.add(MessageEvent, message=LocationMessage)
 def handle_location_message(event):
-  print("HANDLE LOCATION: " + str(session['handler']))
-  session['handler'].handle_location(event, bot_api)
+  state = handle_session(event)
+  state.handle_location(event, bot_api)
 
 @webhook.add(MessageEvent, message=ImageMessage)
 def handle_location_message(event):
-  print("HANDLE LOCATION: " + str(session['handler']))
-  session['handler'].handle_image(event, bot_api)
+  state = handle_session(event)
+  state.handle_image(event, bot_api)
 
 @webhook.add(MessageEvent, message=VideoMessage)
 def handle_location_message(event):
-  print("HANDLE LOCATION: " + str(session['handler']))
-  session['handler'].handle_video(event, bot_api)
+  state = handle_session(event)
+  state.handle_video(event, bot_api)
 
 @webhook.add(PostbackEvent)
 def handle_postback(event):
-  print("HANDLE POSTBACK: " + str(session['handler']))
-  session['handler'].handle_postback(event, bot_api)
+  state = handle_session(event)
+  state.handle_postback(event, bot_api)
 
 
 # Run application.
