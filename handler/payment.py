@@ -26,13 +26,13 @@ class PaymentHandler(Handler):
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
         title='When?', text='Choose schedule:', actions=[
-          PostbackTemplateAction(label='30 Nov 08.00 - Marina', data='choose_sched'),
-          PostbackTemplateAction(label='20 Dec 19.00 - Sydney', data='choose_sched')
+          PostbackTemplateAction(label='30 Nov 08.00: Marina', data='choose1'),
+          PostbackTemplateAction(label='20 Dec 19.00: Sydney', data='choose2')
         ])
       template_message = TemplateSendMessage(
         alt_text='Buttons alt text', template=buttons_template)
       bot_api.reply_message(event.reply_token, template_message)
-    elif data == 'choose_sched':
+    elif data == 'choose1' or data == 'choose2':
       line_bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.'))
