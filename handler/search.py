@@ -2,6 +2,7 @@
 
 from handler import Handler
 from handler.compare import CompareHandler
+from handler.payment import PaymentHandler
 
 from linebot.models import *
 
