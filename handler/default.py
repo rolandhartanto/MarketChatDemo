@@ -31,10 +31,10 @@ class DefaultHandler(Handler):
     data = event.postback.data
 
     if data == 'search':
-      self.switch_handler(event, SearchHandler(event.reply_token, bot_api))
+      self.switch_handler(SearchHandler(event.reply_token, bot_api))
     elif data == 'searchstore':
-      self.switch_handler(event, SearchStoreHandler(event.reply_token, bot_api))
+      self.switch_handler(SearchStoreHandler(event.reply_token, bot_api))
     elif data == 'status':
-      self.switch_handler(event, StatusHandler(event.reply_token, bot_api))
+      self.switch_handler(StatusHandler(event.reply_token, bot_api))
     elif data == 'recommend':
-      self.switch_handler(event, RecommendHandler(event.reply_token, bot_api))
+      self.switch_handler(RecommendHandler(event.reply_token, bot_api))

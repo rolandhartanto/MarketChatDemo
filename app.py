@@ -77,7 +77,7 @@ def callback():
 
 session = {}
 
-def handle_session(event):
+def handle_session():
   user_id = event.source.user_id
 
   if user_id not in session:
@@ -85,7 +85,7 @@ def handle_session(event):
     session[user_id] = handle
 
     @handle.handle_set_handler
-    def set_handler(event, handler):
+    def set_handler(handler):
       session[user_id] = handler
       print("SET HANDLE: " + str(handle) + ", uid: " + str(user_id))
 
@@ -103,7 +103,7 @@ def handle_text_message(event):
     bot_api.reply_message(
       event.reply_token,
       TextMessage(text="Switch to main menu."))
-    state.switch_handler(event, DefaultHandler())
+    state.switch_handler(DefaultHandler())
 
   state.handle_text(event, bot_api)
 
