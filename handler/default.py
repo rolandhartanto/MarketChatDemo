@@ -3,6 +3,7 @@
 from handler import Handler
 from handler.search import SearchHandler, SearchStoreHandler
 from handler.status import StatusHandler
+from handler.recommend import RecommendHandler
 
 from linebot.models import *
 
@@ -18,8 +19,9 @@ class DefaultHandler(Handler):
       buttons_template = ButtonsTemplate(
         title='What do you want to do?', text='Choose action:', actions=[
           PostbackTemplateAction(label='Search Items', data='search'),
-		  PostbackTemplateAction(label='Search Store', data='searchstore'),
-          PostbackTemplateAction(label='View Transactions', data='status')
+		      PostbackTemplateAction(label='Search Store', data='searchstore'),
+          PostbackTemplateAction(label='View Transactions', data='status'),
+          PostbackTemplateAction(label='View Promos', data='recommend')
         ])
       template_message = TemplateSendMessage(
         alt_text='Buttons alt text', template=buttons_template)
@@ -34,3 +36,5 @@ class DefaultHandler(Handler):
       self.switch_handler(event, SearchStoreHandler(event.reply_token, bot_api))
     elif data == 'status':
       self.switch_handler(event, StatusHandler(event.reply_token, bot_api))
+    elif data == 'recommend':
+      self.switch_handler(event, RecommendHandler(event.reply_token, bot_api))
