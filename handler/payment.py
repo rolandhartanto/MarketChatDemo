@@ -33,16 +33,16 @@ class PaymentHandler(Handler):
         alt_text='Buttons alt text', template=buttons_template)
       bot_api.reply_message(event.reply_token, template_message)
     elif data == 'choose1' or data == 'choose2':
-      line_bot_api.reply_message(
+      bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.'))
 
   def handle_image(self, event, bot_api):
-    line_bot_api.reply_message(
+    bot_api.reply_message(
       event.reply_token,
       TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.'))
 
   def handle_video(self, event, bot_api):
-    line_bot_api.reply_message(
+    bot_api.reply_message(
       event.reply_token,
       TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.'))
