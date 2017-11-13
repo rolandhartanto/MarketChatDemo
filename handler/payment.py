@@ -26,8 +26,8 @@ class PaymentHandler(Handler):
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
         title='When?', text='Choose schedule:', actions=[
-          PostbackTemplateAction(label='30 Nov 2017 08.00 - Marina Bay', data='choose_sched'),
-          PostbackTemplateAction(label='1 Dec 2017 19.00 - Sydney Opera House', data='choose_sched')
+          PostbackTemplateAction(label='30 Nov 08.00 - Marina', data='choose_sched'),
+          PostbackTemplateAction(label='20 Dec 19.00 - Sydney', data='choose_sched')
         ])
       template_message = TemplateSendMessage(
         alt_text='Buttons alt text', template=buttons_template)
