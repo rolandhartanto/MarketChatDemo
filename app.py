@@ -93,7 +93,6 @@ def handle_text_message(event):
     bot_api.reply_message(
       event.reply_token,
       TextMessage(text="Switch to main menu."))
-
     session['handler'].switch_handler(event, DefaultHandler())
 
   session['handler'].handle_text(event, bot_api)
@@ -101,13 +100,21 @@ def handle_text_message(event):
 @webhook.add(MessageEvent, message=LocationMessage)
 def handle_location_message(event):
   print("HANDLE LOCATION: " + str(session['handler']))
-
   session['handler'].handle_location(event, bot_api)
+
+@webhook.add(MessageEvent, message=ImageMessage)
+def handle_location_message(event):
+  print("HANDLE LOCATION: " + str(session['handler']))
+  session['handler'].handle_image(event, bot_api)
+
+@webhook.add(MessageEvent, message=VideoMessage)
+def handle_location_message(event):
+  print("HANDLE LOCATION: " + str(session['handler']))
+  session['handler'].handle_video(event, bot_api)
 
 @webhook.add(PostbackEvent)
 def handle_postback(event):
   print("HANDLE POSTBACK: " + str(session['handler']))
-
   session['handler'].handle_postback(event, bot_api)
 
 
