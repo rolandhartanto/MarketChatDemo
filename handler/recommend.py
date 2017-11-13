@@ -88,7 +88,7 @@ class RecommendHandler(Handler):
     data = event.postback.data
 
     if data == 'buy':
-      self.switch_handler(event, PaymentHandler(event.reply_token, bot_api))
+      self.switch_handler(PaymentHandler(event.reply_token, bot_api))
     elif data == 'details_a':
       bot_api.reply_message(
         event.reply_token, TextSendMessage(text="'Indonesian egg\n\nPrice: Rp. 25,000.00\nOrdered 5,454 times today\nStore location: Yogya Karapitan (Bandung)\nCondition: Good"))
