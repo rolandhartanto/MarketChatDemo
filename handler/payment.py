@@ -37,6 +37,14 @@ class PaymentHandler(Handler):
         event.reply_token,
         TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.'))
 
+  def handle_text(self, event, bot_api):
+    text = event.message.text.lower()
+
+    if text == 'validate transfer':
+      bot_api.reply_message(
+        event.reply_token,
+        TextMessage(text='Please upload your evidence of transfer.'))
+
   def handle_image(self, event, bot_api):
     bot_api.reply_message(
       event.reply_token,
