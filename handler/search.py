@@ -10,12 +10,12 @@ class GroceryHandler(Handler):
     carousel_template = CarouselTemplate(columns=[
 
       CarouselColumn(text='Rp 25.000,-', title='Arabian Egg', actions=[
-        PostbackTemplateAction(label='Buy', data='buy_a'),
+        PostbackTemplateAction(label='Buy', data='buy'),
         PostbackTemplateAction(label='Details', data='details_a'),
         PostbackTemplateAction(label='Compare', data='compare')
       ]),
       CarouselColumn(text='Rp 25.000,-', title='Australian Egg', actions=[
-        PostbackTemplateAction(label='Buy', data='buy_b'),
+        PostbackTemplateAction(label='Buy', data='buy'),
         PostbackTemplateAction(label='Details', data='details_b'),
         PostbackTemplateAction(label='Compare', data='compare')
       ])
@@ -27,12 +27,8 @@ class GroceryHandler(Handler):
   def handle_postback(self, event, bot_api):
     data = event.postback.data
 
-    if data == 'buy_a':
-      # TODO: Checkout
-      pass
-    elif data == 'buy_b':
-      # TODO: Checkout
-      pass
+    if data == 'buy':
+      self.switch_handler(event, PaymentHandler(event.reply_token, bot_api))
     elif data == 'details_a':
       bot_api.reply_message(
         event.reply_token, TextSendMessage(text='Arabian egg\n\nPrice: Rp. 25,000.00\nStore location: Yogya Karapitan (Bandung)\nCondition: Good'))

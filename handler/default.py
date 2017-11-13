@@ -1,7 +1,7 @@
 # default.py
 
 from handler import Handler
-from handler.search import SearchHandler
+from handler.search import SearchHandler, SearchStoreHandler
 from handler.status import StatusHandler
 
 from linebot.models import *
