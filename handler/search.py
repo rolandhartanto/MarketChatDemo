@@ -95,14 +95,14 @@ class FashionHandler(Handler):
 class SearchHandler(Handler):
   def __init__(self, reply_token, bot_api):
     buttons_template = ButtonsTemplate(
-      title='In what category?', text='Choose category or type item name(e.g.: egg):', actions=[
+      title='In what category?', text='Choose category:', actions=[
         PostbackTemplateAction(label='Grocery', data='grocery'),
         PostbackTemplateAction(label='Fashion', data='fashion'),
         PostbackTemplateAction(label='All', data='all')
       ])
     template_message = TemplateSendMessage(
       alt_text='Buttons alt text', template=buttons_template)
-    bot_api.reply_message(reply_token, template_message)
+    bot_api.reply_message(reply_token, [TextSendMessage(text='Type item name or key word to search items.\ne.g.: egg\nYou can also choose the categories below.'),template_message])
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
@@ -142,8 +142,7 @@ class SearchStoreHandler(Handler):
     if data == 'yogyak':
       self.switch_handler(YogyaKHandler(event.reply_token, bot_api))
     elif data == 'yogyar':
-      bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='You choose Yogya Riau'))
+      pass
 
 class YogyaKHandler(Handler):
   def __init__(self, reply_token, bot_api):
@@ -188,6 +187,9 @@ class YogyaKHandler(Handler):
           PostbackTemplateAction(label='Compare', data='compare')
         ])
       ])
+      template_message = TemplateSendMessage(
+        alt_text='Carousel alt text', template=carousel_template)
+      bot_api.reply_message(event.reply_token, template_message)
     elif text == 'egg':
       carousel_template = CarouselTemplate(columns=[
         CarouselColumn(thumbnail_image_url='https://matriposterous.files.wordpress.com/2010/11/image_298.jpg',text='Rp 25.000,-', title='Arabian Egg', actions=[
@@ -196,8 +198,11 @@ class YogyaKHandler(Handler):
           PostbackTemplateAction(label='Compare', data='compare')
         ])
       ])
+      template_message = TemplateSendMessage(
+        alt_text='Carousel alt text', template=carousel_template)
+      bot_api.reply_message(event.reply_token, template_message)
     elif text == 'back':
-      self.switch_handler(SearchHandler(event.reply_token, bot_api))
+      self.switch_handler(SearchStoreHandler(event.reply_token, bot_api))
     else:
       bot_api.reply_message(
         event.reply_token, TextSendMessage(text='There is no such item or command.'))

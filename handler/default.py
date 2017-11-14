@@ -3,7 +3,7 @@
 from handler import Handler
 from handler.search import SearchHandler, SearchStoreHandler, FashionHandler, YogyaKHandler
 from handler.status import StatusHandler
-from handler.recommend import RecommendHandler
+from handler.recommend import RecommendByPopularityHandler, RecommendByHistoryHandler, RecommendByPromoHandler
 
 from linebot.models import *
 
@@ -21,7 +21,9 @@ class DefaultHandler(Handler):
           PostbackTemplateAction(label='Search Items', data='search'),
 		      PostbackTemplateAction(label='Search Store', data='searchstore'),
           PostbackTemplateAction(label='View Transactions', data='status'),
-          PostbackTemplateAction(label='View Promos', data='recommend')
+          PostbackTemplateAction(label='View Promos', data='promo'),
+          PostbackTemplateAction(label='Recommended Items', data='history'),
+          PostbackTemplateAction(label='View Popular Items', data='popularity')
         ])
       template_message = TemplateSendMessage(
         alt_text='Buttons alt text', template=buttons_template)
@@ -40,5 +42,9 @@ class DefaultHandler(Handler):
       self.switch_handler(SearchStoreHandler(event.reply_token, bot_api))
     elif data == 'status':
       self.switch_handler(StatusHandler(event.reply_token, bot_api))
-    elif data == 'recommend':
+    elif data == 'promo':
+      self.switch_handler(RecommendHandler(event.reply_token, bot_api))
+    elif data == 'history':
+      self.switch_handler(RecommendHandler(event.reply_token, bot_api))
+    elif data == 'popularity':
       self.switch_handler(RecommendHandler(event.reply_token, bot_api))
