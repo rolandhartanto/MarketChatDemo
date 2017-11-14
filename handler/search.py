@@ -67,7 +67,7 @@ class SearchHandler(Handler):
     text = event.message.text.lower()
     if text == 'egg':
       self.switch_handler(GroceryHandler(event.reply_token, bot_api))
-    else
+    else:
       bot_api.reply_message(
         event.reply_token, TextSendMessage(text='There is no such item.'))
 
