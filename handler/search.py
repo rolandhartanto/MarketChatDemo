@@ -58,10 +58,10 @@ class SearchHandler(Handler):
 
     if data == 'grocery':
       self.switch_handler(GroceryHandler(event.reply_token, bot_api))
-    else #data == 'fashion':
+    elif data == 'fashion':
       pass
-    #elif data == 'all':
-      #self.switch_handler(AllItemHandler(event.reply_token, bot_api))
+    elif data == 'all':
+      pass
 
   def handle_text(self, event, bot_api):
     text = event.message.text.lower()
