@@ -25,18 +25,15 @@ class DefaultHandler(Handler):
         ])
       template_message = TemplateSendMessage(
         alt_text='Buttons alt text', template=buttons_template)
-      bot_api.reply_message(event.reply_token, template_message)
+      bot_api.reply_message(event.reply_token, [TextSendMessage(text='Welcome to MarketChat!\n\nYou can choose what you want to do on the menu below.\nHappy shopping! :D\n\n To view list of instructions, type "help"'),template_message])
     elif text == 'help':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='List of instructions\n- menu: to view main menu\n- cancel: to cancel current activity and go back to start\n- help: to view list of instructions\n'))
-    elif text == 'ehehe':
-      bot_api.reply_message(
-        event.reply_token, [
-          TextMessage(text='Text 1'),
-          TextMessage(text='Text 2'),
-          TextMessage(text='Text 3')
-        ])
+        TextMessage(text='List of instructions\n- menu: if you want to view main menu\n- cancel: if you want to cancel current activity and go back to start\n- help: if you want to see the list of instructions\n- recommended: if you want to see recommended items based on your transaction history\n- popular: if you want to see popular items recently\n\nMenus\n- Search: if you want to search a item that you want to buy\n- Search Store: if you want to search your preferrence store\n- Status: if you want to find your transaction status with this feature\n- View Promos: if you want to find the item that recommended by our system\n'))
+    elif text == 'recommended':
+      self.switch_handler(RecommendByHistoryHandler(event.reply_token, bot_api))
+    elif text == 'popular':
+      self.switch_handler(RecommendByPopularityHandler(event.reply_token, bot_api))
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
@@ -49,7 +46,4 @@ class DefaultHandler(Handler):
       self.switch_handler(StatusHandler(event.reply_token, bot_api))
     elif data == 'promo':
       self.switch_handler(RecommendByPromoHandler(event.reply_token, bot_api))
-    elif data == 'history':
-      self.switch_handler(RecommendByHistoryHandler(event.reply_token, bot_api))
-    elif data == 'popularity':
-      self.switch_handler(RecommendByPopularityHandler(event.reply_token, bot_api))
+    
