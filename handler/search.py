@@ -43,6 +43,8 @@ class GroceryHandler(Handler):
     text = event.message.text.lower()
     if text == 'egg':
       self.switch_handler(GroceryHandler(event.reply_token, bot_api))
+    elif text == 'jeans':
+      self.switch_handler(FashionHandler(event.reply_token, bot_api))
     elif text == 'back':
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
     else:
@@ -86,6 +88,8 @@ class FashionHandler(Handler):
     text = event.message.text.lower()
     if text == 'jeans':
       self.switch_handler(FashionHandler(event.reply_token, bot_api))
+    elif text == 'egg':
+      self.switch_handler(GroceryHandler(event.reply_token, bot_api))
     elif text == 'back':
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
     else:
@@ -102,7 +106,7 @@ class SearchHandler(Handler):
       ])
     template_message = TemplateSendMessage(
       alt_text='Buttons alt text', template=buttons_template)
-    bot_api.reply_message(reply_token, [TextSendMessage(text='Type item name or key word to search items.\ne.g.: egg\nYou can also choose the categories below.'),template_message])
+    bot_api.reply_message(reply_token, [TextSendMessage(text='Type item name or key word to search items.\ne.g.: egg\nYou can also choose the categories below.'),template_message,TextMessage(text='Type "cancel" to cancel this activity.')])
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
@@ -134,7 +138,7 @@ class SearchStoreHandler(Handler):
       ])
     template_message = TemplateSendMessage(
       alt_text='Buttons alt text', template=buttons_template)
-    bot_api.reply_message(reply_token, template_message)
+    bot_api.reply_message(reply_token, [template_message,TextMessage(text='Type "cancel" to cancel this activity.')])
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data

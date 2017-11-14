@@ -102,7 +102,7 @@ def handle_text_message(event):
   if text == 'cancel':
     bot_api.reply_message(
       event.reply_token,
-      TextMessage(text="Switch to main menu."))
+      TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
     state.switch_handler(DefaultHandler())
 
   state.handle_text(event, bot_api)
