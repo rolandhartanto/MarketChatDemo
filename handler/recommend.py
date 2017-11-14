@@ -31,7 +31,7 @@ class RecommendByPromoHandler(Handler):
 
 class RecommendByHistoryHandler(Handler):
 
- def __init__(self, reply_token, bot_api):
+  def __init__(self, reply_token, bot_api):
     carousel_template = CarouselTemplate(columns=[
 
       CarouselColumn(thumbnail_image_url='https://cdn.yoox.biz/46/46539875vo_14_f.jpg',text='Rp 1.400.000,-', title='Skinny Patched Up Jeans A|X', actions=[
