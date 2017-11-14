@@ -48,7 +48,50 @@ class GroceryHandler(Handler):
     else:
       bot_api.reply_message(
         event.reply_token, TextSendMessage(text='There is no such item or command.'))
-        
+
+class FashionHandler(Handler):
+  def __init__(self, reply_token, bot_api):
+    carousel_template = CarouselTemplate(columns=[
+
+      CarouselColumn(thumbnail_image_url='https://cdn.yoox.biz/46/46539875vo_14_f.jpg',text='Rp 1.400.000,-', title='Skinny Patched Up Jeans A|X', actions=[
+        PostbackTemplateAction(label='Buy', data='buy'),
+        PostbackTemplateAction(label='Details', data='details_a'),
+        PostbackTemplateAction(label='Compare', data='compare')
+      ]),
+      CarouselColumn(thumbnail_image_url='https://cdn.yoox.biz/46/46532237xt_14_f.jpg',text='Rp 660.000,-', title='Camo Jacquard Straight Fit Jeans A|X', actions=[
+        PostbackTemplateAction(label='Buy', data='buy'),
+        PostbackTemplateAction(label='Details', data='details_b'),
+        PostbackTemplateAction(label='Compare', data='compare')
+      ])
+    ])
+    template_message = TemplateSendMessage(
+      alt_text='Carousel alt text', template=carousel_template)
+    bot_api.reply_message(reply_token, template_message)
+
+  def handle_postback(self, event, bot_api):
+    data = event.postback.data
+
+    if data == 'buy':
+      self.switch_handler(PaymentHandler(event.reply_token, bot_api))
+    elif data == 'details_a':
+      bot_api.reply_message(
+        event.reply_token, TextSendMessage(text='Skinny Patched Up Jeans\nArmani Exchange\n\nPrice: Rp 1.400.000,00\nStore location: Yogya Karapitan (Bandung)\nCondition: Good'))
+    elif data == 'details_b':
+      bot_api.reply_message(
+        event.reply_token, TextSendMessage(text='Camo Jacquard Straight Fit Jeans\nArmani Exchange\n\nPrice: Rp 660.000.00\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good'))
+    elif data == 'compare':
+      self.switch_handler(CompareHandler(event.reply_token, bot_api))
+
+  def handle_text(self, event, bot_api):
+    text = event.message.text.lower()
+    if text == 'jeans':
+      self.switch_handler(FashionHandler(event.reply_token, bot_api))
+    elif text == 'back':
+      self.switch_handler(SearchHandler(event.reply_token, bot_api))
+    else:
+      bot_api.reply_message(
+        event.reply_token, TextSendMessage(text='There is no such item or command.'))
+          
 class SearchHandler(Handler):
   def __init__(self, reply_token, bot_api):
     buttons_template = ButtonsTemplate(
@@ -75,6 +118,8 @@ class SearchHandler(Handler):
     text = event.message.text.lower()
     if text == 'egg':
       self.switch_handler(GroceryHandler(event.reply_token, bot_api))
+    if text == 'jeans':
+      self.switch_handler(FashionHandler(event.reply_token, bot_api))
     else:
       bot_api.reply_message(
         event.reply_token, TextSendMessage(text='There is no such item.'))
