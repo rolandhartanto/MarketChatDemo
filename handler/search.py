@@ -140,8 +140,6 @@ class SearchStoreHandler(Handler):
     data = event.postback.data
 
     if data == 'yogyak':
-      bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='You choose Yogya kepatihan'))
       self.switch_handler(YogyaKHandler(event.reply_token, bot_api))
     elif data == 'yogyar':
       bot_api.reply_message(
