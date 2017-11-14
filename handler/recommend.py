@@ -59,7 +59,7 @@ class RecommendByHistoryHandler(Handler):
       bot_api.reply_message(
           event.reply_token, TextSendMessage(text='Arabian egg\n\nPrice: Rp. 25,000.00\nStore location: Yogya Karapitan (Bandung)\nCondition: Good'))
 
-class RecommendHandler(Handler):
+class RecommendByPopularityHandler(Handler):
 
   def __init__(self, reply_token, bot_api):
     carousel_template = CarouselTemplate(columns=[
