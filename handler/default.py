@@ -15,7 +15,7 @@ class DefaultHandler(Handler):
   def handle_text(self, event, bot_api):
     text = event.message.text.lower()
 
-    if text == 'hi':
+    if text == 'menu':
       buttons_template = ButtonsTemplate(
         title='What do you want to do?', text='Choose action:', actions=[
           PostbackTemplateAction(label='Search Items', data='search'),
@@ -29,8 +29,9 @@ class DefaultHandler(Handler):
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
-
+    text = event.message.text.lower()
     if data == 'search':
+      
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
     elif data == 'searchstore':
       self.switch_handler(SearchStoreHandler(event.reply_token, bot_api))
