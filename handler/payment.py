@@ -22,7 +22,7 @@ class PaymentHandler(Handler):
     if data == 'transfer':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='Here\'s your seller account number: 900-00-123-123\n\nYour seller are certified seller'))
+        TextMessage(text='Here\'s your seller account number: 900-00-123-123\n\nYour seller are certified seller\n\nType "validate transfer" to validate your transfer evidence.'))
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
         title='When?', text='Choose schedule:', actions=[
@@ -35,7 +35,7 @@ class PaymentHandler(Handler):
     elif data == 'choose1' or data == 'choose2':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.'))
+        TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.\nSeller contact: +6281-222-333-444'))
 
   def handle_text(self, event, bot_api):
     text = event.message.text.lower()

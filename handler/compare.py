@@ -25,5 +25,5 @@ class CompareHandler(Handler):
     if data == 'compare_ok':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text="Arabian egg vs Australian egg\n\nShell:\nSpike shell vs Smooth shell\n\nShape:\nRound shape vs Oval shape\n\nSize:10inch vs 18inch\n\nColor:\nRed vs Cream.\n\Arabian egg's exclusive properties:\nDoes not break when thrown with a force.\n\nAustralian egg's exclusive properties:\n-"))
+        TextMessage(text='Arabian egg(1) vs Australian egg(2)\n\nPrice:\n(1)Rp 25.000,-\n(2)Rp 25.000,-\n\nShape:\nRound shape vs Oval shape\n\nSize:10inch vs 18inch\n\nColor:\nRed vs Cream.\n\nExp. date:\n(1)17-11-2017\n(2)18-11-2017\n\nCondition:\n(1)Good\n(2)Good'))
 
