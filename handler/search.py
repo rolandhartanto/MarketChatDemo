@@ -58,7 +58,7 @@ class FashionHandler(Handler):
         PostbackTemplateAction(label='Details', data='details_a'),
         PostbackTemplateAction(label='Compare', data='compare')
       ]),
-      CarouselColumn(thumbnail_image_url='https://cdn.yoox.biz/46/46532237xt_14_f.jpg',text='Rp 660.000,-', title='Camo Jacquard Straight Fit Jeans A|X', actions=[
+      CarouselColumn(thumbnail_image_url='https://cdn.yoox.biz/46/46532237xt_14_f.jpg',text='Rp 1.320.000,- --> Rp 660.000,- (-50\%\off)', title='Camo Jacquard Straight Fit Jeans A|X', actions=[
         PostbackTemplateAction(label='Buy', data='buy'),
         PostbackTemplateAction(label='Details', data='details_b'),
         PostbackTemplateAction(label='Compare', data='compare')
@@ -78,7 +78,7 @@ class FashionHandler(Handler):
         event.reply_token, TextSendMessage(text='Skinny Patched Up Jeans\nArmani Exchange\n\nPrice: Rp 1.400.000,00\nStore location: Yogya Karapitan (Bandung)\nCondition: Good'))
     elif data == 'details_b':
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='Camo Jacquard Straight Fit Jeans\nArmani Exchange\n\nPrice: Rp 660.000.00\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good'))
+        event.reply_token, TextSendMessage(text='Camo Jacquard Straight Fit Jeans\nArmani Exchange\n\nPrice: Rp 1.320.000,- --> Rp 660.000,- (-50\%\off)\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good'))
     elif data == 'compare':
       self.switch_handler(CompareHandler(event.reply_token, bot_api))
 
