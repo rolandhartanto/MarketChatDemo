@@ -78,13 +78,13 @@ class RecommendHandler(Handler):
     bot_api.reply_message(reply_token, template_message)
 
   def handle_postback(self, event, bot_api):
-  data = event.postback.data
+    data = event.postback.data
 
-  if data == 'buy':
-      self.switch_handler(PaymentHandler(event.reply_token, bot_api))
-  elif data == 'details_a':
-    bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='Skinny Patched Up Jeans\nArmani Exchange\n\nPrice: Rp 1.400.000,00\nStore location: Yogya Karapitan (Bandung)\nCondition: Good'))
-  elif data == 'details_b':
-    bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='Camo Jacquard Straight Fit Jeans\nArmani Exchange\n\nPrice: Rp 1.320.000,- --> Rp 660.000,- (-50\%\off)\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good'))
+    if data == 'buy':
+        self.switch_handler(PaymentHandler(event.reply_token, bot_api))
+    elif data == 'details_a':
+      bot_api.reply_message(
+          event.reply_token, TextSendMessage(text='Skinny Patched Up Jeans\nArmani Exchange\n\nPrice: Rp 1.400.000,00\nStore location: Yogya Karapitan (Bandung)\nCondition: Good'))
+    elif data == 'details_b':
+      bot_api.reply_message(
+          event.reply_token, TextSendMessage(text='Camo Jacquard Straight Fit Jeans\nArmani Exchange\n\nPrice: Rp 1.320.000,- --> Rp 660.000,- (-50\%\off)\nStore location: Yogya Riau Junction (Bandung)\nCondition: Good'))
