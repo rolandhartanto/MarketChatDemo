@@ -35,7 +35,7 @@ class PaymentHandler(Handler):
     elif data == 'choose1' or data == 'choose2':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.\nSeller contact: +6281-222-333-444'))
+        TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.\nSeller contact: +6281-222-333-444\nType "done" to complete transaction.'))
 
   def handle_text(self, event, bot_api):
     text = event.message.text.lower()
