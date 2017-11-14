@@ -50,8 +50,8 @@ class DefaultHandler(Handler):
     elif data == 'status':
       self.switch_handler(StatusHandler(event.reply_token, bot_api))
     elif data == 'promo':
-      self.switch_handler(RecommendHandler(event.reply_token, bot_api))
+      self.switch_handler(RecommendByPromoHandler(event.reply_token, bot_api))
     elif data == 'history':
-      self.switch_handler(RecommendHandler(event.reply_token, bot_api))
+      self.switch_handler(RecommendByHistoryHandler(event.reply_token, bot_api))
     elif data == 'popularity':
-      self.switch_handler(RecommendHandler(event.reply_token, bot_api))
+      self.switch_handler(RecommendByPopularityHandler(event.reply_token, bot_api))
