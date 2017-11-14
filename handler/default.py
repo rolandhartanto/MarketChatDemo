@@ -21,8 +21,7 @@ class DefaultHandler(Handler):
           PostbackTemplateAction(label='Search Items', data='search'),
 		      PostbackTemplateAction(label='Search Store', data='searchstore'),
           PostbackTemplateAction(label='View Transactions', data='status'),
-          PostbackTemplateAction(label='View Promos', data='promo'),
-          PostbackTemplateAction(label='Recommended Items', data='history')
+          PostbackTemplateAction(label='View Promos', data='promo')
         ])
       template_message = TemplateSendMessage(
         alt_text='Buttons alt text', template=buttons_template)
