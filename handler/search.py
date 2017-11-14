@@ -42,7 +42,7 @@ class GroceryHandler(Handler):
 class SearchHandler(Handler):
   def __init__(self, reply_token, bot_api):
     buttons_template = ButtonsTemplate(
-      title='In what category?', text='Choose category:', actions=[
+      title='In what category?', text='Type "item name" to search item.\n e.g.: egg\nYou can also choose the categories below.\n', actions=[
         PostbackTemplateAction(label='Grocery', data='grocery'),
         PostbackTemplateAction(label='Fashion', data='fashion'),
         PostbackTemplateAction(label='All', data='all')
