@@ -39,10 +39,20 @@ class GroceryHandler(Handler):
     elif data == 'compare':
       self.switch_handler(CompareHandler(event.reply_token, bot_api))
 
+  def handle_text(self, event, bot_api):
+    text = event.message.text.lower()
+    if text == 'egg':
+      self.switch_handler(GroceryHandler(event.reply_token, bot_api))
+    elif text == 'back':
+      self.switch_handler(SearchHandler(event.reply_token, bot_api))
+    else:
+      bot_api.reply_message(
+        event.reply_token, TextSendMessage(text='There is no such item or command.'))
+        
 class SearchHandler(Handler):
   def __init__(self, reply_token, bot_api):
     buttons_template = ButtonsTemplate(
-      title='In what category?', text='Choose category:', actions=[
+      title='In what category?', text='Choose category or type item name(e.g.: egg):', actions=[
         PostbackTemplateAction(label='Grocery', data='grocery'),
         PostbackTemplateAction(label='Fashion', data='fashion'),
         PostbackTemplateAction(label='All', data='all')
