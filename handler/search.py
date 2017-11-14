@@ -10,7 +10,7 @@ class GroceryHandler(Handler):
   def __init__(self, reply_token, bot_api):
     carousel_template = CarouselTemplate(columns=[
 
-      CarouselColumn(thumbnailImageUrl='https://matriposterous.files.wordpress.com/2010/11/image_298.jpg?w=473&h=375&zoom=2',text='Rp 25.000,-', title='Arabian Egg', actions=[
+      CarouselColumn(thumbnailImageUrl='https://matriposterous.files.wordpress.com/2010/11/image_298.jpg',text='Rp 25.000,-', title='Arabian Egg', actions=[
         PostbackTemplateAction(label='Buy', data='buy'),
         PostbackTemplateAction(label='Details', data='details_a'),
         PostbackTemplateAction(label='Compare', data='compare')
