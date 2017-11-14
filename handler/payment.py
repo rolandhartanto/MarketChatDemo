@@ -48,9 +48,9 @@ class PaymentHandler(Handler):
   def handle_image(self, event, bot_api):
     bot_api.reply_message(
       event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.'))
+      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.\nType "done" to complete transaction.'))
 
   def handle_video(self, event, bot_api):
     bot_api.reply_message(
       event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.'))
+      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.\nType "done" to complete transaction.'))
