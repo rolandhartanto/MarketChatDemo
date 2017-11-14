@@ -26,12 +26,15 @@ class DefaultHandler(Handler):
       template_message = TemplateSendMessage(
         alt_text='Buttons alt text', template=buttons_template)
       bot_api.reply_message(event.reply_token, template_message)
+    if text == 'help':
+      bot_api.reply_message(
+        event.reply_token,
+        TextMessage(text='List of instructions\n- menu: to view main menu\n- cancel: to cancel current activity and go back to start\n- help: to view list of instructions\n'))
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
-    text = event.message.text.lower()
+    
     if data == 'search':
-      
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
     elif data == 'searchstore':
       self.switch_handler(SearchStoreHandler(event.reply_token, bot_api))
