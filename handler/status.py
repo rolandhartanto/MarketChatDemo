@@ -26,5 +26,5 @@ class StatusHandler(Handler):
     elif data == 't2':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text="Transaction ID 2.\nAustralian Egg.\n\nStatus: Packing"))
+        TextMessage(text="Transaction ID 2.\nSkinny Patched Up Jeans A|X\n\nStatus: Packing"))
 

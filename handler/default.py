@@ -1,7 +1,7 @@
 # default.py
 
 from handler import Handler
-from handler.search import SearchHandler, SearchStoreHandler, FashionHandler, YogyaKHandler
+from handler.search import SearchHandler, SearchStoreHandler, FashionHandler, YogyaKHandler, AllHandler
 from handler.status import StatusHandler
 from handler.recommend import RecommendByPopularityHandler, RecommendByHistoryHandler, RecommendByPromoHandler
 
@@ -29,7 +29,7 @@ class DefaultHandler(Handler):
     elif text == 'help':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='List of instructions\n- menu: if you want to view main menu\n- cancel: if you want to cancel current activity and go back to start\n- help: if you want to see the list of instructions\n- recommended: if you want to see recommended items based on your transaction history\n- popular: if you want to see popular items recently\n\nMenus\n- Search: if you want to search a item that you want to buy\n- Search Store: if you want to search your preferrence store\n- Status: if you want to find your transaction status with this feature\n- View Promos: if you want to find the item that recommended by our system\n'))
+        TextMessage(text='List of instructions\n- menu: if you want to view main menu\n- back: if you want to go back to previous activity\n- cancel: if you want to cancel current activity and go back to start\n- help: if you want to see the list of instructions\n- recommended: if you want to see recommended items based on your transaction history\n- popular: if you want to see popular items recently\n\nMenus\n- Search: if you want to search a item that you want to buy\n- Search Store: if you want to search your preferrence store\n- Status: if you want to find your transaction status with this feature\n- View Promos: if you want to find the item that recommended by our system\n'))
     elif text == 'recommended':
       self.switch_handler(RecommendByHistoryHandler(event.reply_token, bot_api))
     elif text == 'popular':
