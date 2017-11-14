@@ -35,7 +35,7 @@ class DefaultHandler(Handler):
     data = event.postback.data
     
     if data == 'search':
-       bot_api.reply_message(
+      bot_api.reply_message(
         event.reply_token, TextSendMessage(text='Type "item name" to search item.\n e.g.: egg\nYou can also choose the categories below.\n'))
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
     elif data == 'searchstore':
