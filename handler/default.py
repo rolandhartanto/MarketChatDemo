@@ -1,7 +1,7 @@
 # default.py
 
 from handler import Handler
-from handler.search import SearchHandler, SearchStoreHandler, FashionHandler
+from handler.search import SearchHandler, SearchStoreHandler, FashionHandler, YogyaKHandler
 from handler.status import StatusHandler
 from handler.recommend import RecommendHandler
 
