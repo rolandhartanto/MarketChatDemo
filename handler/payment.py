@@ -44,6 +44,20 @@ class PaymentHandler(Handler):
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Please upload your evidence of transfer.'))
+    elif text == 'cancel':
+      bot_api.reply_message(
+        event.reply_token,
+        TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
+      state.switch_handler(DefaultHandler())
+    elif text == 'done':
+      bot_api.reply_message(
+        event.reply_token,
+        TextMessage(text='Type "menu" to view main menu.\nTo view other instructions, type "help".'))
+      state.switch_handler(DefaultHandler())
+    else:
+      bot_api.reply_message(
+        event.reply_token,
+        TextMessage(text='Are you lost?\nPlease type "validate transfer" to validate your transfer evidence, type "cancel" to cancel your order or push the button at the image before'))
 
   def handle_image(self, event, bot_api):
     bot_api.reply_message(
