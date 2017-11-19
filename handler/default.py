@@ -48,13 +48,11 @@ class DefaultHandler(Handler):
         event.reply_token,
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
       state.switch_handler(DefaultHandler())
-    #else:
-    #  bot_api.reply_message(
-    #    event.reply_token,
-    #    TextMessage(text='Are you lost?\nPlease type "help" to see the list of instructions'))
-    #  state.switch_handler(DefaultHandler())
-
-
+    else:
+      bot_api.reply_message(
+        event.reply_token,
+        TextMessage(text='Are you lost?\nPlease type "help" to see the list of instructions'))
+      state.switch_handler(DefaultHandler())
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
