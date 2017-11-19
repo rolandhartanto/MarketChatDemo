@@ -47,33 +47,14 @@ class GroceryHandler(Handler):
       self.switch_handler(FashionHandler(event.reply_token, bot_api))
     elif text == 'back':
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
-    elif text == 'validate transfer':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Please upload your evidence of transfer.'))
     elif text == 'cancel':
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
       state.switch_handler(DefaultHandler())
-    elif text == 'done':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Type "menu" to view main menu.\nTo view other instructions, type "help".'))
-      state.switch_handler(DefaultHandler())
     else:
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='There is no such item or command. There are 2 item in the list such as egg and jeans and you can validate your transfer by type "validate transfer" or cancel your order by type "cancel"'))
-
-  def handle_image(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.\nType "done" to complete transaction.'))
-
-  def handle_video(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.\nType "done" to complete transaction.'))
+        event.reply_token, TextSendMessage(text='There is no such item or command. There are 2 item in the list such as egg and jeans and you can cancel your order by type "cancel"'))
 
 class FashionHandler(Handler):
   def __init__(self, reply_token, bot_api):
@@ -116,34 +97,15 @@ class FashionHandler(Handler):
       self.switch_handler(GroceryHandler(event.reply_token, bot_api))
     elif text == 'back':
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
-    elif text == 'validate transfer':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Please upload your evidence of transfer.'))
     elif text == 'cancel':
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
       state.switch_handler(DefaultHandler())
-    elif text == 'done':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Type "menu" to view main menu.\nTo view other instructions, type "help".'))
-      state.switch_handler(DefaultHandler())
     else:
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='There is no such item or command. There are 2 items in the list such as egg and jeans and you can validate your transfer by type "validate transfer" or cancel your order by type "cancel"'))
+        event.reply_token, TextSendMessage(text='There is no such item or command. There are 2 items in the list such as egg and jeans and you can cancel your order by type "cancel"'))
 
-  def handle_image(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.\nType "done" to complete transaction.'))
-
-  def handle_video(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.\nType "done" to complete transaction.'))
-          
 class SearchHandler(Handler):
   def __init__(self, reply_token, bot_api):
     buttons_template = ButtonsTemplate(
@@ -172,33 +134,14 @@ class SearchHandler(Handler):
       self.switch_handler(GroceryHandler(event.reply_token, bot_api))
     if text == 'jeans':
       self.switch_handler(FashionHandler(event.reply_token, bot_api))
-    if text == 'validate transfer':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Please upload your evidence of transfer.'))
-    elif text == 'done':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Type "menu" to view main menu.\nTo view other instructions, type "help".'))
-      state.switch_handler(DefaultHandler())
-    elif text == 'cancel':
+    if text == 'cancel':
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
       state.switch_handler(DefaultHandler())
     else:
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='There is no such item. There are 2 items in the list such as egg and jeans. You can validate your transfer by type "validate transfer" or cancel your order by type "cancel"'))
-
-  def handle_image(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.\nType "done" to complete transaction.'))
-
-  def handle_video(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.\nType "done" to complete transaction.'))
+        event.reply_token, TextSendMessage(text='There is no such item. There are 2 items in the list such as egg and jeans. You can cancel your order by type "cancel"'))
 
 class SearchStoreHandler(Handler):
   def __init__(self, reply_token, bot_api):
@@ -222,16 +165,7 @@ class SearchStoreHandler(Handler):
   def handle_text(self, event, bot_api):
     text = event.message.text.lower()
 
-    if text == 'validate transfer':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Please upload your evidence of transfer.'))
-    elif text == 'done':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Type "menu" to view main menu.\nTo view other instructions, type "help".'))
-      state.switch_handler(DefaultHandler())
-    elif text == 'cancel':
+    if text == 'cancel':
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
@@ -239,17 +173,7 @@ class SearchStoreHandler(Handler):
     else:
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='Are you lost?\nYou can validate your transfer here by typing "validate transfer" or push the button at the image before or type "cancel" to cancel your order'))
-
-  def handle_image(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.\nType "done" to complete transaction.'))
-
-  def handle_video(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.\nType "done" to complete transaction.'))
+        TextMessage(text='Are you lost?\nYou can push the button at the image before or type "cancel" to cancel your order'))
 
 class YogyaKHandler(Handler):
   def __init__(self, reply_token, bot_api):
@@ -310,15 +234,6 @@ class YogyaKHandler(Handler):
       bot_api.reply_message(event.reply_token, template_message)
     elif text == 'back':
       self.switch_handler(SearchStoreHandler(event.reply_token, bot_api))
-    elif text == 'validate transfer':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Please upload your evidence of transfer.'))
-    elif text == 'done':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Type "menu" to view main menu.\nTo view other instructions, type "help".'))
-      state.switch_handler(DefaultHandler())
     elif text == 'cancel':
       bot_api.reply_message(
         event.reply_token,
@@ -326,17 +241,7 @@ class YogyaKHandler(Handler):
       state.switch_handler(DefaultHandler())
     else:
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='There is no such item or command. There are 2 items in the list such as jeans and egg. You can validate your transfer by type"validate transfer" or cancel your order by type "cancel"'))
-
-  def handle_image(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.\nType "done" to complete transaction.'))
-
-  def handle_video(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.\nType "done" to complete transaction.'))
+        event.reply_token, TextSendMessage(text='There is no such item or command. There are 2 items in the list such as jeans and egg. You can cancel your order by type "cancel"'))
 
 class AllHandler(Handler):
   def __init__(self, reply_token, bot_api):
@@ -394,15 +299,6 @@ class AllHandler(Handler):
       self.switch_handler(GroceryHandler(event.reply_token, bot_api))
     elif text == 'back':
       self.switch_handler(SearchHandler(event.reply_token, bot_api))
-    elif text == 'validate transfer':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Please upload your evidence of transfer.'))
-    elif text == 'done':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Type "menu" to view main menu.\nTo view other instructions, type "help".'))
-      state.switch_handler(DefaultHandler())
     elif text == 'cancel':
       bot_api.reply_message(
         event.reply_token,
@@ -410,14 +306,4 @@ class AllHandler(Handler):
       state.switch_handler(DefaultHandler())
     else:
       bot_api.reply_message(
-        event.reply_token, TextSendMessage(text='There is no such item or command. There are 2 items in the list such as egg and jeans. You can validate your transfer by type "valida transfer" or cancel your order by type "cancel"'))
-          
-  def handle_image(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.\nType "done" to complete transaction.'))
-
-  def handle_video(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.\nType "done" to complete transaction.'))
+        event.reply_token, TextSendMessage(text='There is no such item or command. There are 2 items in the list such as egg and jeans. You can cancel your order by type "cancel"'))
