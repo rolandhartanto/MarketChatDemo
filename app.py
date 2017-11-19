@@ -109,11 +109,11 @@ def handle_text_message(event):
       event.reply_token,
       TextMessage(text='Type "menu" to view main menu.\nTo view other instructions, type "help".'))
     state.switch_handler(DefaultHandler())
-  else:
-  	bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='Are you lost?\nPlease type "done" or "cancel"'))
-  	state.switch_handler(DefaultHandler())
+  #else:
+  #	bot_api.reply_message(
+  #    event.reply_token,
+  #    TextMessage(text='Are you lost?\nPlease type "done" or "cancel"'))
+  #	state.switch_handler(DefaultHandler())
 
   state.handle_text(event, bot_api)
 
