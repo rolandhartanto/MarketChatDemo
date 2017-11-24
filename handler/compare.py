@@ -37,7 +37,7 @@ class CompareHandler(Handler):
         ])
       ])
       template_message = TemplateSendMessage(alt_text='Carousel alt text', template=carousel_template)
-      bot_api.reply_message(reply_token, [TextSendMessage(text='Choose which item to replace in the comparison:'),template_message])
+      bot_api.reply_message(event.reply_token, [TextSendMessage(text='Choose which item to replace in the comparison:'),template_message])
 	  else:
       bot_api.reply_message(
         event.reply_token,
@@ -59,8 +59,7 @@ class CompareHandler(Handler):
           PostbackTemplateAction(label='Choose', data='compare_ok')
         ])
       ])
-      template_message = TemplateSendMessage(
-        alt_text='Carousel alt text', template=carousel_template)
+      template_message = TemplateSendMessage(alt_text='Carousel alt text', template=carousel_template)
       bot_api.reply_message(event.reply_token, [TextSendMessage(text='Choose which item to replace the previous item:'),template_message])
 
       
