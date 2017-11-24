@@ -38,7 +38,7 @@ class CompareHandler(Handler):
       ])
       template_message = TemplateSendMessage(alt_text='Carousel alt text',template=carousel_template)
       bot_api.reply_message(event.reply_token, [TextSendMessage(text='Choose which item to replace in the comparison:'),template_message])
-	else:
+    else:
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Are you lost?\nYou can push the button at the image before or type "cancel" to cancel your order'))
