@@ -40,7 +40,7 @@ class CompareHandler(Handler):
         alt_text='Carousel alt text', template=carousel_template)
       bot_api.reply_message(reply_token, [TextSendMessage(text='Choose which item to replace in the comparison:'),template_message])
   
-	else:
+	  else:
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Are you lost?\nYou can push the button at the image before or type "cancel" to cancel your order'))
@@ -52,13 +52,17 @@ class CompareHandler(Handler):
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Arabian egg(1) vs Australian egg(2)\n\nPrice:\n(1)Rp 25.000,-\n(2)Rp 25.000,-\n\nShape:\nRound shape vs Oval shape\n\nSize:10inch vs 18inch\n\nColor:\nRed vs Cream.\n\nExp. date:\n(1)17-11-2017\n(2)18-11-2017\n\nCondition:\n(1)Good\n(2)Good'))
-	elif data == 'compare_chg':
-	  CarouselColumn(text='Rp 25.000,-', title='Arabian Egg', actions=[
-        PostbackTemplateAction(label='Choose', data='compare_ok')
-      ]),
-      CarouselColumn(text='Rp 25.000,-', title='Australian Egg', actions=[
-        PostbackTemplateAction(label='Choose', data='compare_ok')
+    elif data == 'compare_chg':
+      carousel_template = CarouselTemplate(columns=[
+        CarouselColumn(text='Rp 25.000,-', title='Arabian Egg', actions=[
+          PostbackTemplateAction(label='Choose', data='compare_ok')
+        ]),
+        CarouselColumn(text='Rp 25.000,-', title='Australian Egg', actions=[
+          PostbackTemplateAction(label='Choose', data='compare_ok')
+        ])
       ])
-	  template_message = TemplateSendMessage(
+      template_message = TemplateSendMessage(
         alt_text='Carousel alt text', template=carousel_template)
-      bot_api.reply_message(reply_token, [TextSendMessage(text='Choose which item to replace the previous item:'),template_message])
+      bot_api.reply_message(event.reply_token, [TextSendMessage(text='Choose which item to replace the previous item:'),template_message])
+
+      
