@@ -21,7 +21,7 @@ class DefaultHandler(Handler):
           PostbackTemplateAction(label='Search Items', data='search'),
 		      PostbackTemplateAction(label='Search Store', data='searchstore'),
           PostbackTemplateAction(label='View Transactions', data='status'),
-          PostbackTemplateAction(label='View Promos', data='promo')
+          PostbackTemplateAction(label='Others', data='others')
         ])
       template_message = TemplateSendMessage(
         alt_text='Buttons alt text', template=buttons_template)
@@ -29,11 +29,7 @@ class DefaultHandler(Handler):
     elif text == 'help':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='List of instructions\n- menu: if you want to view main menu\n- back: if you want to go back to previous activity\n- cancel: if you want to cancel current activity and go back to start\n- help: if you want to see the list of instructions\n- recommended: if you want to see recommended items based on your transaction history\n- popular: if you want to see popular items recently\n- validate transfer: if you want to validate your transfer evidence\n\nMenus\n- Search: if you want to search a item that you want to buy\n- Search Store: if you want to search your preferrence store\n- Status: if you want to find your transaction status with this feature\n- View Promos: if you want to find the item that recommended by our system\n'))
-    elif text == 'recommended':
-      self.switch_handler(RecommendByHistoryHandler(event.reply_token, bot_api))
-    elif text == 'popular':
-      self.switch_handler(RecommendByPopularityHandler(event.reply_token, bot_api))
+        TextMessage(text='List of instructions (type the instruction to use it)\n- menu: if you want to view main menu\n- back: if you want to go back to previous activity\n- cancel: if you want to cancel current activity and go back to start\n- help: if you want to see the list of instructions\n- recommended: if you want to see recommended items based on your transaction history\n- popular: if you want to see popular items recently\n- validate transfer: if you want to validate your transfer evidence\n\nMenus (press the menu option button to choose)\n- Search Items: if you want to search a item that you want to buy\n- Search Store: if you want to search your preferrence store\n- View Transactions: if you want to find your transaction status with this feature'))
     elif text == 'validate transfer':
       bot_api.reply_message(
         event.reply_token,
@@ -63,9 +59,23 @@ class DefaultHandler(Handler):
       self.switch_handler(SearchStoreHandler(event.reply_token, bot_api))
     elif data == 'status':
       self.switch_handler(StatusHandler(event.reply_token, bot_api))
+    elif data == 'others':
+      buttons_template = ButtonsTemplate(
+        title='What do you want to do?', text='Choose action:', actions=[
+          PostbackTemplateAction(label='Promo Items', data='promo'),
+		      PostbackTemplateAction(label='Recommended Items', data='recommended'),
+          PostbackTemplateAction(label='Popular Items', data='popular'),
+        ])
+      template_message = TemplateSendMessage(
+        alt_text='Buttons alt text', template=buttons_template)
+      bot_api.reply_message(event.reply_token, [template_message,TextSendMessage(text='Type "cancel" to cancel this activity.')])
     elif data == 'promo':
       self.switch_handler(RecommendByPromoHandler(event.reply_token, bot_api))
-  
+    elif data == 'recommended':
+      self.switch_handler(RecommendByHistoryHandler(event.reply_token, bot_api))
+    elif data == 'popular':
+      self.switch_handler(RecommendByPopularityHandler(event.reply_token, bot_api))
+
   def handle_image(self, event, bot_api):
     bot_api.reply_message(
       event.reply_token,
