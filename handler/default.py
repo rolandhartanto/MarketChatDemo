@@ -8,18 +8,7 @@ from handler.recommend import RecommendByPopularityHandler, RecommendByHistoryHa
 from linebot.models import *
 
 class DefaultHandler(Handler):
-  def __init__(self, reply_token, bot_api):
-    buttons_template = ButtonsTemplate(
-      title='What do you want to do?', text='Choose action:', actions=[
-        PostbackTemplateAction(label='Search Items', data='search'),
-        PostbackTemplateAction(label='Search Store', data='searchstore'),
-        PostbackTemplateAction(label='View Transactions', data='status'),
-        PostbackTemplateAction(label='Others', data='others')
-      ])
-    template_message = TemplateSendMessage(
-      alt_text='Buttons alt text', template=buttons_template)
-    bot_api.reply_message(reply_token, [TextSendMessage(text='Welcome to MarketChat!\n\nYou can choose what you want to do on the menu below.\nHappy shopping! :D\n\n To view list of instructions, type "help"'),template_message])
- 
+
   def handle_set_handler(self, cb):
     self.set_handler_callback = cb
 
