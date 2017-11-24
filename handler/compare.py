@@ -28,7 +28,7 @@ class CompareHandler(Handler):
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
       state.switch_handler(DefaultHandler())
     elif text == 'change':
-  	  carousel_template = CarouselTemplate(columns=[
+      carousel_template = CarouselTemplate(columns=[
         CarouselColumn(text='1', title='Arabian Egg', actions=[
           PostbackTemplateAction(label='Choose', data='compare_chg')
         ]),
