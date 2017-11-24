@@ -23,7 +23,7 @@ class GroceryHandler(Handler):
     ])
     template_message = TemplateSendMessage(
       alt_text='Carousel alt text', template=carousel_template)
-    bot_api.reply_message(reply_token, [template_message,TextSendMessage(text='Type "back" to go to choose item category.\n Type "cancel" to cancel search.\n Type item name to search other item.')])
+    bot_api.reply_message(reply_token, template_message)
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
@@ -65,7 +65,7 @@ class FashionHandler(Handler):
         PostbackTemplateAction(label='Details', data='details_a'),
         PostbackTemplateAction(label='Compare', data='compare')
       ]),
-      CarouselColumn(thumbnail_image_url='https://cdn.yoox.biz/46/46532237xt_14_f.jpg',text='Rp 1.320.000,- --> Rp 660.000,- (-50% off)', title='Camo Jacquard Straight Fit Jeans A|X', actions=[
+      CarouselColumn(thumbnail_image_url='https://cdn.yoox.biz/46/46532237xt_14_f.jpg',text='Rp 1.320.000,- --> Rp 660.000,- (-50\%\off)', title='Camo Jacquard Straight Fit Jeans A|X', actions=[
         PostbackTemplateAction(label='Buy', data='buy'),
         PostbackTemplateAction(label='Details', data='details_b'),
         PostbackTemplateAction(label='Compare', data='compare')
@@ -73,7 +73,7 @@ class FashionHandler(Handler):
     ])
     template_message = TemplateSendMessage(
       alt_text='Carousel alt text', template=carousel_template)
-    bot_api.reply_message(reply_token, [template_message,TextSendMessage(text='Type "back" to go to choose item category.\n Type "cancel" to cancel search.\n Type item name to search other item.')])
+    bot_api.reply_message(reply_token, template_message)
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
@@ -192,7 +192,7 @@ class YogyaKHandler(Handler):
     ])
     template_message = TemplateSendMessage(
       alt_text='Carousel alt text', template=carousel_template)
-    bot_api.reply_message(reply_token, [template_message,TextSendMessage(text='Type "back" to go to choose item category.\n Type "cancel" to cancel search.\n Type item name to search other item.')])
+    bot_api.reply_message(reply_token, template_message)
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
