@@ -8,7 +8,7 @@ from handler.recommend import RecommendByPopularityHandler, RecommendByHistoryHa
 from linebot.models import *
 
 class DefaultHandler(Handler):
-
+  
   def handle_set_handler(self, cb):
     self.set_handler_callback = cb
 
