@@ -18,7 +18,7 @@ class RecommendByPromoHandler(Handler):
     ])
     template_message = TemplateSendMessage(
       alt_text='Carousel alt text', template=carousel_template)
-    bot_api.reply_message(reply_token, template_message)
+    bot_api.reply_message(reply_token, [template_message,TextSendMessage(text='Type "cancel" to cancel activity.')])
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
@@ -58,7 +58,7 @@ class RecommendByHistoryHandler(Handler):
     ])
     template_message = TemplateSendMessage(
       alt_text='Carousel alt text', template=carousel_template)
-    bot_api.reply_message(reply_token, template_message)
+    bot_api.reply_message(reply_token, [template_message,TextSendMessage(text='Type "cancel" to cancel activity.')])
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
@@ -101,7 +101,7 @@ class RecommendByPopularityHandler(Handler):
     ])
     template_message = TemplateSendMessage(
       alt_text='Carousel alt text', template=carousel_template)
-    bot_api.reply_message(reply_token, template_message)
+    bot_api.reply_message(reply_token, [template_message,TextSendMessage(text='Type "cancel" to cancel activity.')])
 
   def handle_postback(self, event, bot_api):
     data = event.postback.data
