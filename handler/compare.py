@@ -36,8 +36,7 @@ class CompareHandler(Handler):
           PostbackTemplateAction(label='Choose', data='compare_chg')
         ])
       ])
-      template_message = TemplateSendMessage(
-        alt_text='Carousel alt text', template=carousel_template)
+      template_message = TemplateSendMessage(alt_text='Carousel alt text', template=carousel_template)
       bot_api.reply_message(reply_token, [TextSendMessage(text='Choose which item to replace in the comparison:'),template_message])
   
 	  else:
