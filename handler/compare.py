@@ -28,7 +28,7 @@ class CompareHandler(Handler):
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
       state.switch_handler(DefaultHandler())
     elif text == 'change':
-  	  carousel_template = CarouselTemplate(columns=[
+      carousel_template = CarouselTemplate(columns=[
         CarouselColumn(text='1', title='Arabian Egg', actions=[
           PostbackTemplateAction(label='Choose', data='compare_chg')
         ]),
@@ -38,7 +38,7 @@ class CompareHandler(Handler):
       ])
       template_message = TemplateSendMessage(alt_text='Carousel alt text',template=carousel_template)
       bot_api.reply_message(event.reply_token, [TextSendMessage(text='Choose which item to replace in the comparison:'),template_message])
-	  else:
+    else:
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Are you lost?\nYou can push the button at the image before or type "cancel" to cancel your order'))
@@ -61,5 +61,3 @@ class CompareHandler(Handler):
       ])
       template_message = TemplateSendMessage(alt_text='Carousel alt text',template=carousel_template)
       bot_api.reply_message(event.reply_token, [TextSendMessage(text='Choose which item to replace the previous item:'),template_message])
-
-      
