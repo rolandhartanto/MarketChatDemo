@@ -46,7 +46,7 @@ class PaymentHandler(Handler):
   def handle_text(self, event, bot_api):
     text = event.message.text.lower()
 
-    if text == 'validate transfer':
+    if text == 'validate':
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Please upload your evidence of transfer.'))
@@ -63,7 +63,7 @@ class PaymentHandler(Handler):
     else:
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='Are you lost?\nPlease type "validate transfer" to validate your transfer evidence, type "cancel" to cancel your order or push the button at the image before'))
+        TextMessage(text='Are you lost?\nPlease type "validate" to validate your transfer evidence, type "cancel" to cancel your order or push the button at the image before'))
 
   def handle_image(self, event, bot_api):
     bot_api.reply_message(

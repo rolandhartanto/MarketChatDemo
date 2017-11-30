@@ -29,8 +29,8 @@ class DefaultHandler(Handler):
     elif text == 'help':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='List of instructions (type the instruction to use it)\n- menu: if you want to view main menu\n- back: if you want to go back to previous activity\n- cancel: if you want to cancel current activity and go back to start\n- help: if you want to see the list of instructions\n- recommended: if you want to see recommended items based on your transaction history\n- popular: if you want to see popular items recently\n- validate transfer: if you want to validate your transfer evidence\n\nMenus (press the menu option button to choose)\n- Search Items: if you want to search a item that you want to buy\n- Search Store: if you want to search your preferrence store\n- View Transactions: if you want to find your transaction status with this feature'))
-    elif text == 'validate transfer':
+        TextMessage(text='List of instructions (type the instruction to use it)\n- menu: if you want to view main menu\n- back: if you want to go back to previous activity\n- cancel: if you want to cancel current activity and go back to start\n- help: if you want to see the list of instructions\n- recommended: if you want to see recommended items based on your transaction history\n- popular: if you want to see popular items recently\n- validate: if you want to validate your transfer evidence\n\nMenus (press the menu option button to choose)\n- Search Items: if you want to search a item that you want to buy\n- Search Store: if you want to search your preferrence store\n- View Transactions: if you want to find your transaction status with this feature'))
+    elif text == 'validate':
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Please upload your evidence of transfer.'))
@@ -75,13 +75,3 @@ class DefaultHandler(Handler):
       self.switch_handler(RecommendByHistoryHandler(event.reply_token, bot_api))
     elif data == 'popular':
       self.switch_handler(RecommendByPopularityHandler(event.reply_token, bot_api))
-
-  def handle_image(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.\nType "done" to complete transaction.'))
-
-  def handle_video(self, event, bot_api):
-    bot_api.reply_message(
-      event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.\nType "done" to complete transaction.'))
