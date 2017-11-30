@@ -10,7 +10,8 @@ class StatusHandler(Handler):
     buttons_template = ButtonsTemplate(
       title='Transactions?', text='Choose transaction:', actions=[
         PostbackTemplateAction(label='Transaction 1', data='t1'),
-        PostbackTemplateAction(label='Transaction 2', data='t2')
+        PostbackTemplateAction(label='Transaction 2', data='t2'),
+        PostbackTemplateAction(label='Transaction 3', data='t3')
       ])
     template_message = TemplateSendMessage(
       alt_text='Buttons alt text', template=buttons_template)
@@ -27,7 +28,11 @@ class StatusHandler(Handler):
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text="Transaction ID 2.\nSkinny Patched Up Jeans A|X\n\nStatus: Packing"))
-
+    elif data == 't3':
+      bot_api.reply_message(
+        event.reply_token,
+        TextMessage(text="Transaction ID 3.\nAustralian Egg\n\nStatus: COD"))
+    
   def handle_text(self, event, bot_api):
     text = event.message.text.lower()
 
@@ -45,10 +50,18 @@ class StatusHandler(Handler):
         event.reply_token,
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
       state.switch_handler(DefaultHandler())
+    elif text == 'cancel COD':
+      bot_api.reply_message(
+        event.reply_token,
+        TextMessage(text='Are you sure you want to cancel the COD order of your transaction?\nPlease type the transaction ID e.g "t3".'))
+    elif text == 't3':
+      bot_api.reply_message(
+        event.reply_token,
+        TextMessage(text='Your Transaction 3 COD order have been cancelled.'))  
     else:
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='Are you lost?\nYou can validate your transfer here by typing "validate" or push the button at the image before or type "cancel" to cancel your order'))
+        TextMessage(text='Are you lost?\nYou can either:\n- validate your transfer here by typing "validate"\n- push the button at the image before\n- type "cancel" to cancel your order\n- cancel COD'))
  
   def handle_image(self, event, bot_api):
     bot_api.reply_message(
