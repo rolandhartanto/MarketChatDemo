@@ -39,11 +39,11 @@ class PaymentHandler(Handler):
         ])
       template_message = TemplateSendMessage(
         alt_text='Cash On Delivery Payment', template=buttons_template)
-      bot_api.reply_message(event.reply_token, [TextMessage(text='Your transaction\'s seller name is Toko Yoyo. Seller Contact: +6281-222-333-444'), template_message])
+      bot_api.reply_message(event.reply_token, [TextSendMessage(text='Your transaction\'s seller name is Toko Yoyo.\nSeller Contact: +6281-222-333-444'), template_message])
     elif data == 'choose1' or data == 'choose2':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.\nSeller name: Toko Yoyo. Seller contact: +6281-222-333-444\nType "done" to complete transaction.'))
+        TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.\nSeller name: Toko Yoyo. Seller contact: +6281-222-333-444'))
       state.switch_handler(DefaultHandler())
     
   def handle_text(self, event, bot_api):
@@ -66,9 +66,9 @@ class PaymentHandler(Handler):
   def handle_image(self, event, bot_api):
     bot_api.reply_message(
       event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.\nType "done" to complete transaction.'))
+      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are accepted by our system. Our system already contacted the seller. You can check the status of your order.'))
 
   def handle_video(self, event, bot_api):
     bot_api.reply_message(
       event.reply_token,
-      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.\nType "done" to complete transaction.'))
+      TextMessage(text='The system already validate your evidence of transfer.\nYour transfer are not accepted by our system.\nPlease validate your transfer again.'))
