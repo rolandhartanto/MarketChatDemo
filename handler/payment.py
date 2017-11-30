@@ -23,12 +23,14 @@ class PaymentHandler(Handler):
       text1 = TextMessage(text='Wait a moment while we validate your transactions\'s seller status.')
       text2 = TextMessage(text='We already validate your transaction\'s seller status.')
       text3 = TextMessage(text='Your seller status verdict are safe.')
-      text4 = TextMessage(text='The seller account number are: 900-00-123-123.')
-      text5 = TextMessage(text='We guarantee that transfer payment with the seller is safe.')
-      text6 = TextMessage(text='If you have any dificulty in the payment please contact our administrator: 082821821821.')
+      text4 = TextMessage(text='The seller account\'s name are: Toko Yoyo')
+      text5 = TextMessage(text='The seller account\'s number are: 900-00-123-123.')
+      text6 = TextMessage(text='The seller account\'s bank name are: Mandiri')
+      text7 = TextMessage(text='We guarantee that transfer payment with the seller is safe.')
+      text8 = TextMessage(text='If you have any dificulty in the payment please contact our administrator: +6282821821821.')
       bot_api.reply_message(
         event.reply_token,
-        [text1, text2, text3, text4, text5, text6])
+        [text1, text2, text3, text4, text5, text6, text7, text8])
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
         title='When?', text='Choose Schedule:', actions=[
