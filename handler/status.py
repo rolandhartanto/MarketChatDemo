@@ -14,7 +14,7 @@ class StatusHandler(Handler):
         PostbackTemplateAction(label='Transaction 3', data='t3')
       ])
     template_message = TemplateSendMessage(
-      alt_text='Buttons alt text', template=buttons_template)
+      alt_text='Transactions', template=buttons_template)
     bot_api.reply_message(reply_token, template_message)
 
   def handle_postback(self, event, bot_api):
@@ -31,7 +31,7 @@ class StatusHandler(Handler):
     elif data == 't3':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text="Transaction ID 3.\nAustralian Egg\n\nStatus: COD"))
+        TextMessage(text='Transaction ID 3.\nAustralian Egg\n\nStatus: COD\nIf you want to cancel COD transaction type "cancel COD"'))
     
   def handle_text(self, event, bot_api):
     text = event.message.text.lower()
@@ -50,7 +50,7 @@ class StatusHandler(Handler):
         event.reply_token,
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
       state.switch_handler(DefaultHandler())
-    elif text == 'cancel COD':
+    elif text == 'cancel cod':
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Are you sure you want to cancel the COD order of your transaction?\nPlease type the transaction ID e.g "t3".'))
@@ -61,7 +61,7 @@ class StatusHandler(Handler):
     else:
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='Are you lost?\nYou can either:\n- validate your transfer here by typing "validate"\n- push the button at the image before\n- type "cancel" to cancel your order\n- cancel COD'))
+        TextMessage(text='Are you lost?\nYou can either:\n- validate your transfer here by typing "validate"\n- push the button at the image before\n- type "cancel" to cancel your order\n- type "cancel COD" to cancel COD transaction'))
  
   def handle_image(self, event, bot_api):
     bot_api.reply_message(
