@@ -13,7 +13,7 @@ class PaymentHandler(Handler):
         PostbackTemplateAction(label='Payment by COD', data='cod')
       ])
     template_message = TemplateSendMessage(
-      alt_text='Buttons alt text', template=buttons_template)
+      alt_text='Payment Method', template=buttons_template)
     bot_api.reply_message(reply_token, template_message)
 
   def handle_postback(self, event, bot_api):
@@ -31,18 +31,19 @@ class PaymentHandler(Handler):
         [text1, text2, text3, text4, text5, text6])
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
-        title='When?', text='Choose schedule:', actions=[
-          PostbackTemplateAction(label='30 Nov 08.00: Marina', data='choose1'),
-          PostbackTemplateAction(label='20 Dec 19.00: Sydney', data='choose2')
+        title='When?', text='Choose Schedule:', actions=[
+          PostbackTemplateAction(label='Time - Place: 30 Nov 08.00 - Marina', data='choose1'),
+          PostbackTemplateAction(label='Time - Place: 20 Dec 19.00 - Sydney', data='choose2')
         ])
       template_message = TemplateSendMessage(
-        alt_text='Buttons alt text', template=buttons_template)
-      bot_api.reply_message(event.reply_token, template_message)
+        alt_text='Cash On Delivery Payment', template=buttons_template)
+      bot_api.reply_message(event.reply_token, [TextMessage(text='Your transaction\'s seller name is Toko Yoyo. Seller Contact: +6281-222-333-444'), template_message])
     elif data == 'choose1' or data == 'choose2':
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.\nSeller contact: +6281-222-333-444\nType "done" to complete transaction.'))
-
+        TextMessage(text='Your seller has been contacted by our system. Please meet your seller at the meeting point on time.\nSeller name: Toko Yoyo. Seller contact: +6281-222-333-444\nType "done" to complete transaction.'))
+      state.switch_handler(DefaultHandler())
+    
   def handle_text(self, event, bot_api):
     text = event.message.text.lower()
 
@@ -54,11 +55,6 @@ class PaymentHandler(Handler):
       bot_api.reply_message(
         event.reply_token,
         TextMessage(text='Activity cancelled.\n\nType "menu" to view main menu.\nTo view other instructions, type "help".'))
-      state.switch_handler(DefaultHandler())
-    elif text == 'done':
-      bot_api.reply_message(
-        event.reply_token,
-        TextMessage(text='Type "menu" to view main menu.\nTo view other instructions, type "help".'))
       state.switch_handler(DefaultHandler())
     else:
       bot_api.reply_message(
