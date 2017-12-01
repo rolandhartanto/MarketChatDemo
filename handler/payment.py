@@ -32,7 +32,7 @@ class PaymentHandler(Handler):
         ])
       template_message = TemplateSendMessage(
         alt_text='Payment Method', template=buttons_template)
-      bot_api.reply_message(reply_token, template_message)
+      bot_api.reply_message(event.reply_token, template_message)
     elif data == 'choose1' or data == 'choose2':
       bot_api.reply_message(
         event.reply_token,
