@@ -20,19 +20,19 @@ class PaymentHandler(Handler):
     data = event.postback.data
 
     if data == 'transfer':
-      text = TextMessage(text='Your seller status verdict are safe.\nSeller name and seller account\'s number are: Toko Yoyo - *900-00-123-123*.Bank name: Mandiri\nWe guarantee that transfer payment with the seller is safe.\nIf you have any dificulty in the payment please contact our administrator: +6282821821821.')
+      text = TextMessage(text='Your seller status verdict are safe.\nSeller name and seller account\'s number are: Toko Yoyo - *900-00-123-123*. Bank name: Mandiri\nWe guarantee that transfer payment with the seller is safe.\nIf you have any dificulty in the payment please contact our administrator: +6282821821821.')
       bot_api.reply_message(
         event.reply_token,
         text)
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
-        title='When?', text='Choose Schedule:', actions=[
-          PostbackTemplateAction(label='30 Nov 08.00 - Marina', data='choose1'),
-          PostbackTemplateAction(label='20 Dec 19.00 - Sydney', data='choose2')
+        title='Payment method?', text='Choose method:', actions=[
+          PostbackTemplateAction(label='Payment by Transfer', data='transfer'),
+          PostbackTemplateAction(label='Payment by COD', data='cod')
         ])
       template_message = TemplateSendMessage(
-        alt_text='COD Payment', template=buttons_template)
-      bot_api.reply_message(event.reply_token, template_message)
+        alt_text='Payment Method', template=buttons_template)
+      bot_api.reply_message(reply_token, template_message)
     elif data == 'choose1' or data == 'choose2':
       bot_api.reply_message(
         event.reply_token,
