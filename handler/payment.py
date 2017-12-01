@@ -20,10 +20,10 @@ class PaymentHandler(Handler):
     data = event.postback.data
 
     if data == 'transfer':
-      text = TextMessage(text='Wait a moment while we validate your transactions\'s seller status.\nWe already validate your transaction\'s seller status.\nYour seller status verdict are safe.\nThe seller account\'s name are: Toko Yoyo\nThe seller account\'s number are: 900-00-123-123.\nThe seller account\'s bank name are: Mandiri\nWe guarantee that transfer payment with the seller is safe.\nIf you have any dificulty in the payment please contact our administrator: +6282821821821.')
+      text = TextMessage(text='Your seller status verdict are safe.\nSeller name and seller account\'s number are: Toko Yoyo - *900-00-123-123*.Bank name: Mandiri\nWe guarantee that transfer payment with the seller is safe.\nIf you have any dificulty in the payment please contact our administrator: +6282821821821.')
       bot_api.reply_message(
         event.reply_token,
-        TextMessage(text='blablabla'))
+        text)
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
         title='When?', text='Choose Schedule:', actions=[
