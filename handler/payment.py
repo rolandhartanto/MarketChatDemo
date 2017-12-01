@@ -26,12 +26,12 @@ class PaymentHandler(Handler):
         text)
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
-        title='Payment method?', text='Choose method:', actions=[
-          PostbackTemplateAction(label='Payment by Transfer', data='transfer'),
-          PostbackTemplateAction(label='Payment by COD', data='cod')
+        title='When?', text='Choose schedule:', actions=[
+          PostbackTemplateAction(label='30 Nov 2017 08.00 - Marina', data='choose1'),
+          PostbackTemplateAction(label='20 Dec 2017 19.00 - Sydney', data='choose2')
         ])
       template_message = TemplateSendMessage(
-        alt_text='Payment Method', template=buttons_template)
+        alt_text='COD', template=buttons_template)
       bot_api.reply_message(event.reply_token, template_message)
     elif data == 'choose1' or data == 'choose2':
       bot_api.reply_message(
