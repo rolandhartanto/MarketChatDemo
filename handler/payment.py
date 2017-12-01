@@ -30,7 +30,7 @@ class PaymentHandler(Handler):
       text8 = TextMessage(text='If you have any dificulty in the payment please contact our administrator: +6282821821821.')
       bot_api.reply_message(
         event.reply_token,
-        [text1, text2, text3, text4])
+        text1)
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
         title='When?', text='Choose Schedule:', actions=[
