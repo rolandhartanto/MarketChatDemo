@@ -31,7 +31,7 @@ class PaymentHandler(Handler):
           PostbackTemplateAction(label='20 Dec 19.00 - Sydney', data='choose2')
         ])
       template_message = TemplateSendMessage(
-        alt_text='Cash On Delivery Payment', template=buttons_template)
+        alt_text='COD Payment', template=buttons_template)
       bot_api.reply_message(event.reply_token, template_message)
     elif data == 'choose1' or data == 'choose2':
       bot_api.reply_message(
