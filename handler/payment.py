@@ -20,17 +20,10 @@ class PaymentHandler(Handler):
     data = event.postback.data
 
     if data == 'transfer':
-      text1 = TextSendMessage(text='Wait a moment while we validate your transactions\'s seller status.')
-      text2 = TextSendMessage(text='We already validate your transaction\'s seller status.')
-      text3 = TextMessage(text='Your seller status verdict are safe.')
-      text4 = TextMessage(text='The seller account\'s name are: Toko Yoyo')
-      text5 = TextMessage(text='The seller account\'s number are: 900-00-123-123.')
-      text6 = TextMessage(text='The seller account\'s bank name are: Mandiri')
-      text7 = TextMessage(text='We guarantee that transfer payment with the seller is safe.')
-      text8 = TextMessage(text='If you have any dificulty in the payment please contact our administrator: +6282821821821.')
+      text = TextMessage(text='Wait a moment while we validate your transactions\'s seller status.\nWe already validate your transaction\'s seller status.\nYour seller status verdict are safe.\nThe seller account\'s name are: Toko Yoyo\nThe seller account\'s number are: 900-00-123-123.\nThe seller account\'s bank name are: Mandiri\nWe guarantee that transfer payment with the seller is safe.\nIf you have any dificulty in the payment please contact our administrator: +6282821821821.')
       bot_api.reply_message(
         event.reply_token,
-        [text1, text2])
+        text)
     elif data == 'cod':
       buttons_template = ButtonsTemplate(
         title='When?', text='Choose Schedule:', actions=[
@@ -39,7 +32,7 @@ class PaymentHandler(Handler):
         ])
       template_message = TemplateSendMessage(
         alt_text='Cash On Delivery Payment', template=buttons_template)
-      bot_api.reply_message(event.reply_token, [TextSendMessage(text='Your transaction\'s seller name is Toko Yoyo.\nSeller Contact: +6281-222-333-444'), template_message])
+      bot_api.reply_message(event.reply_token, template_message)
     elif data == 'choose1' or data == 'choose2':
       bot_api.reply_message(
         event.reply_token,
